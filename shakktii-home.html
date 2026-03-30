@@ -1,0 +1,1435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shakktii — Engineering Human Potential</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F0F4F8;
+    --bg-light: #F8FAFC;
+    --blue-deep: #0F2A44;
+    --blue-mid: #1A3A5C;
+    --blue-soft: #325C91;
+    --gold: #C9A44D;
+    --gold-light: #D4B96A;
+    --text-dark: #1C2B38;
+    --text-mid: #2C3E50;
+    --text-secondary: #6B7C8C;
+    --border: #D8E4F0;
+    --white: #FFFFFF;
+    --card-bg: rgba(255,255,255,0.72);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text-dark);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── NEURAL CANVAS BACKGROUND ─── */
+  #neural-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* ─── GLOBAL LAYOUT ─── */
+  .page-wrapper {
+    position: relative;
+    z-index: 1;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 60px;
+  }
+
+  /* ─── NAVBAR ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 22px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(240, 244, 248, 0.7);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(210, 225, 240, 0.4);
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--blue-deep); }
+
+  .btn-nav {
+    background: var(--gold);
+    color: var(--white);
+    padding: 9px 20px;
+    border-radius: 6px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+
+  .btn-nav:hover {
+    background: var(--gold-light);
+    box-shadow: 0 4px 20px rgba(201,164,77,0.35);
+  }
+
+  /* ─── HERO SECTION ─── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 140px 60px 80px;
+    position: relative;
+  }
+
+  .hero-content {
+    max-width: 700px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--blue-soft);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 32px;
+    backdrop-filter: blur(10px);
+  }
+
+  .hero-badge-dot {
+    width: 6px; height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(52px, 7vw, 84px);
+    font-weight: 500;
+    color: var(--blue-deep);
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    margin-bottom: 24px;
+    text-transform: uppercase;
+    animation: fadeUp 1s 0.1s ease both;
+  }
+
+  .hero p {
+    font-size: 17px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto 40px;
+    animation: fadeUp 1s 0.2s ease both;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeUp 1s 0.3s ease both;
+  }
+
+  .btn-primary {
+    background: var(--blue-deep);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    background: var(--blue-mid);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 30px rgba(15,42,68,0.25);
+  }
+
+  .btn-outline {
+    background: rgba(255,255,255,0.5);
+    color: var(--blue-deep);
+    padding: 13px 28px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.01em;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(10px);
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover {
+    background: rgba(255,255,255,0.8);
+    transform: translateY(-1px);
+  }
+
+  /* ─── SECTION WRAPPER ─── */
+  section {
+    position: relative;
+    padding: 100px 0;
+  }
+
+  /* ─── PROBLEM SECTION ─── */
+  .problem-section {
+    padding: 120px 0;
+    text-align: center;
+  }
+
+  .section-card {
+    background: rgba(255,255,255,0.55);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255,255,255,0.7);
+    border-radius: 20px;
+    padding: 80px 60px;
+    box-shadow: 0 8px 60px rgba(15,42,68,0.06);
+  }
+
+  .section-overline {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  .problem-section h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4.5vw, 56px);
+    font-weight: 500;
+    color: var(--blue-deep);
+    line-height: 1.2;
+    margin-bottom: 20px;
+    letter-spacing: -0.01em;
+  }
+
+  .problem-section .answer {
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--blue-soft);
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    letter-spacing: 0.01em;
+  }
+
+  /* ─── LIFECYCLE SECTION ─── */
+  .lifecycle-section {
+    padding: 100px 0;
+  }
+
+  .lifecycle-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .lifecycle-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 500;
+    color: var(--blue-deep);
+    margin-bottom: 12px;
+  }
+
+  .lifecycle-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  .lifecycle-track {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    position: relative;
+    padding: 0 20px;
+  }
+
+  .lifecycle-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    flex: 1;
+    max-width: 200px;
+    position: relative;
+    cursor: default;
+  }
+
+  .lifecycle-step:hover .step-circle {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+    transform: scale(1.08);
+  }
+
+  .lifecycle-step:hover .step-circle span {
+    color: white;
+  }
+
+  .step-circle {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    border: 1.5px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step-circle span {
+    font-size: 22px;
+    color: var(--blue-soft);
+    transition: color 0.3s;
+  }
+
+  .step-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    transition: color 0.3s;
+  }
+
+  .lifecycle-step:hover .step-label {
+    color: var(--blue-deep);
+  }
+
+  .lifecycle-connector {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border), rgba(201,164,77,0.3), var(--border));
+    position: relative;
+    top: -20px;
+    margin: 0 -4px;
+  }
+
+  .lifecycle-connector::after {
+    content: '›';
+    position: absolute;
+    right: -4px;
+    top: -10px;
+    color: var(--gold);
+    font-size: 16px;
+    opacity: 0.7;
+  }
+
+  /* ─── MOCKMINGLE SECTION ─── */
+  .mockmingle-section {
+    padding: 100px 0;
+  }
+
+  .mm-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .mm-left h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 4vw, 56px);
+    font-weight: 500;
+    color: var(--blue-deep);
+    line-height: 1.1;
+    margin-bottom: 16px;
+  }
+
+  .mm-left .mm-tagline {
+    font-size: 17px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    margin-bottom: 12px;
+    line-height: 1.6;
+  }
+
+  .mm-left .mm-desc {
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 36px;
+  }
+
+  .mm-features {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 32px;
+  }
+
+  .mm-feature-chip {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: rgba(255,255,255,0.6);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-mid);
+    backdrop-filter: blur(10px);
+  }
+
+  .mm-feature-chip .chip-icon {
+    width: 16px;
+    height: 16px;
+    background: var(--blue-deep);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9px;
+    color: white;
+  }
+
+  /* ─── BROWSER MOCKUP ─── */
+  .browser-mockup {
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(255,255,255,0.9);
+    border-radius: 14px;
+    box-shadow: 0 24px 80px rgba(15,42,68,0.12), 0 4px 20px rgba(15,42,68,0.06);
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+    animation: floatAnim 6s ease-in-out infinite;
+  }
+
+  @keyframes floatAnim {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+
+  .browser-bar {
+    background: rgba(240,244,248,0.9);
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .browser-dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+  }
+
+  .browser-dot:nth-child(1) { background: #FF5F57; }
+  .browser-dot:nth-child(2) { background: #FFBD2E; }
+  .browser-dot:nth-child(3) { background: #28C840; }
+
+  .browser-address {
+    flex: 1;
+    background: rgba(255,255,255,0.7);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 11px;
+    color: var(--text-secondary);
+    margin-left: 8px;
+  }
+
+  .browser-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 280px;
+  }
+
+  .browser-video-side {
+    background: linear-gradient(135deg, #1a3a5c 0%, #0d2035 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .video-avatar {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #3a6491, #2a4e73);
+    border: 2px solid rgba(255,255,255,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+
+  .video-avatar svg {
+    width: 36px;
+    height: 36px;
+    fill: rgba(255,255,255,0.5);
+  }
+
+  .video-name {
+    font-size: 12px;
+    color: rgba(255,255,255,0.7);
+    font-weight: 400;
+  }
+
+  .video-controls {
+    position: absolute;
+    bottom: 12px;
+    left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 0 16px;
+  }
+
+  .video-progress {
+    flex: 1;
+    height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .video-progress-fill {
+    height: 100%;
+    width: 45%;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .video-btn {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .browser-panel-side {
+    background: rgba(248,250,252,0.95);
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .panel-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+  }
+
+  .panel-score-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .panel-score-label {
+    font-size: 11px;
+    color: var(--text-mid);
+    font-weight: 400;
+    white-space: nowrap;
+    min-width: 80px;
+  }
+
+  .panel-bar {
+    flex: 1;
+    height: 5px;
+    background: var(--border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+
+  .panel-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--blue-soft), var(--blue-deep));
+  }
+
+  .panel-score-val {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .panel-cta-row {
+    margin-top: auto;
+    display: flex;
+    gap: 6px;
+  }
+
+  .panel-chip {
+    flex: 1;
+    background: var(--border);
+    border-radius: 4px;
+    padding: 5px 6px;
+    font-size: 9px;
+    font-weight: 500;
+    color: var(--text-mid);
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .panel-chip-gold {
+    background: var(--gold);
+    color: white;
+  }
+
+  /* ─── SOLUTIONS SECTION ─── */
+  .solutions-section {
+    padding: 100px 0;
+  }
+
+  .solutions-header {
+    text-align: center;
+    margin-bottom: 64px;
+  }
+
+  .solutions-header h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 500;
+    color: var(--blue-deep);
+    margin-bottom: 12px;
+  }
+
+  .solutions-header p {
+    font-size: 15px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .solutions-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+  }
+
+  .solution-card {
+    background: rgba(255,255,255,0.6);
+    border: 1px solid rgba(255,255,255,0.8);
+    border-radius: 14px;
+    padding: 28px 20px;
+    backdrop-filter: blur(16px);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 20px rgba(15,42,68,0.04);
+  }
+
+  .solution-card:hover {
+    background: rgba(255,255,255,0.85);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(15,42,68,0.1);
+    border-color: rgba(201,164,77,0.3);
+  }
+
+  .solution-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, rgba(15,42,68,0.08), rgba(50,92,145,0.12));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 22px;
+  }
+
+  .solution-card h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 8px;
+    letter-spacing: 0.01em;
+  }
+
+  .solution-card p {
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.6;
+  }
+
+  /* ─── TRUST SECTION ─── */
+  .trust-section {
+    padding: 80px 0;
+    text-align: center;
+  }
+
+  .trust-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+    display: block;
+  }
+
+  .trust-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .trust-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    opacity: 0.5;
+    letter-spacing: 0.05em;
+    transition: opacity 0.2s;
+    cursor: default;
+  }
+
+  .trust-logo:hover { opacity: 0.85; }
+
+  /* ─── CTA SECTION ─── */
+  .cta-section {
+    padding: 40px 0 100px;
+  }
+
+  .cta-banner {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #162D4A 50%, #0A1F35 100%);
+    border-radius: 20px;
+    padding: 80px 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-banner::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: -50%;
+    width: 200%; height: 200%;
+    background: radial-gradient(ellipse at 30% 40%, rgba(201,164,77,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 60%, rgba(50,92,145,0.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .cta-banner h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(30px, 4vw, 48px);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+    position: relative;
+    line-height: 1.2;
+  }
+
+  .cta-banner p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+    margin-bottom: 40px;
+    position: relative;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    position: relative;
+  }
+
+  .btn-gold {
+    background: var(--gold);
+    color: var(--white);
+    padding: 13px 28px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(201,164,77,0.3);
+  }
+
+  .btn-gold:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 32px rgba(201,164,77,0.4);
+  }
+
+  .btn-ghost {
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.8);
+    padding: 13px 28px;
+    border-radius: 7px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.15);
+    transition: all 0.2s;
+  }
+
+  .btn-ghost:hover {
+    background: rgba(255,255,255,0.14);
+    transform: translateY(-1px);
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: rgba(240,244,248,0.7);
+    border-top: 1px solid var(--border);
+    backdrop-filter: blur(16px);
+    padding: 60px 0 32px;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 48px;
+    margin-bottom: 48px;
+  }
+
+  .footer-brand h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 10px;
+  }
+
+  .footer-brand p {
+    font-size: 13px;
+    color: var(--text-secondary);
+    font-weight: 300;
+    line-height: 1.7;
+    max-width: 240px;
+  }
+
+  .footer-col h4 {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-col ul a {
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s;
+  }
+
+  .footer-col ul a:hover { color: var(--blue-deep); }
+
+  .footer-bottom {
+    border-top: 1px solid var(--border);
+    padding-top: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-secondary);
+    font-weight: 300;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.8); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    margin: 0 auto 24px;
+  }
+
+  /* Scroll down indicator */
+  .scroll-indicator {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    animation: fadeUp 1s 1s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 40px;
+    background: linear-gradient(180deg, var(--border), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { opacity: 1; height: 40px; }
+    100% { opacity: 0; height: 60px; }
+  }
+
+  .scroll-text {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    opacity: 0.5;
+  }
+</style>
+</head>
+<body>
+
+<!-- Neural wave canvas -->
+<canvas id="neural-canvas"></canvas>
+
+<div class="page-wrapper">
+
+  <!-- ─── NAVBAR ─── -->
+  <nav>
+    <a href="#" class="nav-logo">Shakktii</a>
+    <ul class="nav-links">
+      <li><a href="#mockmingle">MockMingle</a></li>
+      <li><a href="#solutions">Solutions</a></li>
+      <li><a href="#insights">Insights</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="btn-nav">Schedule Consultation</a>
+  </nav>
+
+  <!-- ─── HERO ─── -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Human Potential Infrastructure
+      </div>
+      <h1>Engineering<br>Human Potential</h1>
+      <p>Shakktii builds the infrastructure that helps individuals and institutions discover, develop and deploy human potential.</p>
+      <div class="hero-buttons">
+        <a href="#mockmingle" class="btn-primary">Explore MockMingle</a>
+        <a href="#solutions" class="btn-outline">View Solutions</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <span class="scroll-text">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ─── PROBLEM STATEMENT ─── -->
+  <section class="problem-section">
+    <div class="container">
+      <div class="section-card reveal">
+        <span class="section-overline">The Problem</span>
+        <div class="section-divider"></div>
+        <h2>The world does not lack talent.<br>It lacks systems that recognize it.</h2>
+        <p class="answer">Shakktii is building those systems.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── LIFECYCLE ─── -->
+  <section class="lifecycle-section">
+    <div class="container">
+      <div class="lifecycle-header reveal">
+        <span class="section-overline">The Architecture</span>
+        <h2>A Structured Intelligence Framework</h2>
+        <p>A structured intelligence architecture designed to unlock human capability at scale.</p>
+      </div>
+      <div class="lifecycle-track reveal">
+        <div class="lifecycle-step">
+          <div class="step-circle"><span>◎</span></div>
+          <span class="step-label">Discover</span>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-step">
+          <div class="step-circle"><span>⬡</span></div>
+          <span class="step-label">Diagnose</span>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-step">
+          <div class="step-circle" style="background: rgba(15,42,68,0.08); border-color: var(--blue-soft);">
+            <span style="color: var(--blue-deep);">⟡</span>
+          </div>
+          <span class="step-label" style="color: var(--blue-deep);">Develop</span>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-step">
+          <div class="step-circle"><span>◈</span></div>
+          <span class="step-label">Demonstrate</span>
+        </div>
+        <div class="lifecycle-connector"></div>
+        <div class="lifecycle-step">
+          <div class="step-circle"><span>↗</span></div>
+          <span class="step-label">Deploy</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── MOCKMINGLE ─── -->
+  <section class="mockmingle-section" id="mockmingle">
+    <div class="container">
+      <div class="section-card reveal">
+        <div class="mm-grid">
+          <div class="mm-left">
+            <span class="section-overline">Product</span>
+            <h2>MockMingle</h2>
+            <p class="mm-tagline">The Operating System for Career Readiness</p>
+            <p class="mm-desc">A structured intelligence architecture designed to unlock human capability at scale.</p>
+            <div class="mm-features">
+              <div class="mm-feature-chip">
+                <div class="chip-icon">⬡</div>
+                AI Mock Interviews
+              </div>
+              <div class="mm-feature-chip">
+                <div class="chip-icon">◎</div>
+                Behavioural Diagnostics
+              </div>
+              <div class="mm-feature-chip">
+                <div class="chip-icon">⟡</div>
+                Skill Readiness Intelligence
+              </div>
+              <div class="mm-feature-chip">
+                <div class="chip-icon">↗</div>
+                Career Pathway Guidance
+              </div>
+            </div>
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <a href="#" class="btn-primary">Explore MockMingle</a>
+              <a href="#" class="btn-outline" style="font-size:13px;">Schedule Demo</a>
+            </div>
+          </div>
+          <div>
+            <!-- Browser Mockup -->
+            <div class="browser-mockup">
+              <div class="browser-bar">
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-dot"></div>
+                <div class="browser-address">app.mockmingle.ai</div>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9BA8B4" stroke-width="2" style="margin-left:8px">
+                  <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+                </svg>
+              </div>
+              <div class="browser-content">
+                <div class="browser-video-side">
+                  <div style="position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 40% 30%, rgba(50,92,145,0.3) 0%,transparent 70%);pointer-events:none"></div>
+                  <div class="video-avatar">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"/></svg>
+                  </div>
+                  <div class="video-name">AI Interview Session</div>
+                  <div class="video-controls">
+                    <div class="video-btn">
+                      <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </div>
+                    <div class="video-progress"><div class="video-progress-fill"></div></div>
+                    <div style="font-size:9px;color:rgba(255,255,255,0.5);">04:32</div>
+                  </div>
+                </div>
+                <div class="browser-panel-side">
+                  <div class="panel-label">Performance Analysis</div>
+                  <div class="panel-score-row">
+                    <span class="panel-score-label">Communication</span>
+                    <div class="panel-bar"><div class="panel-bar-fill" style="width:82%"></div></div>
+                    <span class="panel-score-val">82</span>
+                  </div>
+                  <div class="panel-score-row">
+                    <span class="panel-score-label">Confidence</span>
+                    <div class="panel-bar"><div class="panel-bar-fill" style="width:74%"></div></div>
+                    <span class="panel-score-val">74</span>
+                  </div>
+                  <div class="panel-score-row">
+                    <span class="panel-score-label">Clarity</span>
+                    <div class="panel-bar"><div class="panel-bar-fill" style="width:91%"></div></div>
+                    <span class="panel-score-val">91</span>
+                  </div>
+                  <div class="panel-score-row">
+                    <span class="panel-score-label">Structure</span>
+                    <div class="panel-bar"><div class="panel-bar-fill" style="width:68%"></div></div>
+                    <span class="panel-score-val">68</span>
+                  </div>
+                  <div class="panel-score-row">
+                    <span class="panel-score-label">Domain Fit</span>
+                    <div class="panel-bar"><div class="panel-bar-fill" style="width:88%"></div></div>
+                    <span class="panel-score-val">88</span>
+                  </div>
+                  <div class="panel-cta-row" style="margin-top:12px">
+                    <div class="panel-chip">Practice more</div>
+                    <div class="panel-chip">View report</div>
+                    <div class="panel-chip panel-chip-gold">Schedule</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SOLUTIONS ─── -->
+  <section class="solutions-section" id="solutions">
+    <div class="container">
+      <div class="solutions-header reveal">
+        <span class="section-overline">Solutions</span>
+        <h2>Solutions for Institutions and Individuals</h2>
+        <p>Human potential infrastructure designed to guide, assess, and prepare for the future of work.</p>
+      </div>
+      <div class="solutions-grid reveal">
+        <div class="solution-card">
+          <div class="solution-icon">🏫</div>
+          <h3>Schools</h3>
+          <p>Career awareness and early diagnostics for students</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">🎓</div>
+          <h3>Colleges</h3>
+          <p>Placement intelligence and skill gap insights</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">👤</div>
+          <h3>Professionals</h3>
+          <p>Career guidance and readiness scoring</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">🏢</div>
+          <h3>Companies</h3>
+          <p>Hiring intelligence and talent mapping</p>
+        </div>
+        <div class="solution-card">
+          <div class="solution-icon">⚡</div>
+          <h3>Workforce</h3>
+          <p>Behavioural diagnostics at scale</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── TRUST ─── -->
+  <section class="trust-section">
+    <div class="container">
+      <span class="trust-label reveal">Trusted by institutions across India</span>
+      <div class="trust-logos reveal">
+        <span class="trust-logo">Sinhgad</span>
+        <span class="trust-logo">Wadia</span>
+        <span class="trust-logo">Nagpur University</span>
+        <span class="trust-logo">Y4D</span>
+        <span class="trust-logo">Ideas to Impact</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CTA ─── -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-banner reveal">
+        <h2>Building the infrastructure<br>for human potential</h2>
+        <p>Join institutions already transforming how talent is discovered and deployed.</p>
+        <div class="cta-buttons">
+          <a href="#contact" class="btn-gold">Schedule Consultation</a>
+          <a href="#mockmingle" class="btn-ghost">Explore MockMingle</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─── -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Shakktii</h3>
+          <p>Building infrastructure for human potential. Helping individuals and institutions discover, develop and deploy talent.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul>
+            <li><a href="#">MockMingle</a></li>
+            <li><a href="#">Diagnostics</a></li>
+            <li><a href="#">Skill Engine</a></li>
+            <li><a href="#">Institution Dashboard</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Solutions</h4>
+          <ul>
+            <li><a href="#">For Schools</a></li>
+            <li><a href="#">For Colleges</a></li>
+            <li><a href="#">For Companies</a></li>
+            <li><a href="#">For Workforce</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Insights</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2025 Shakktii. All rights reserved.</span>
+        <span>Engineering Human Potential</span>
+      </div>
+    </div>
+  </footer>
+
+</div><!-- end page-wrapper -->
+
+<script>
+// ─── NEURAL WAVE CANVAS ───────────────────────────────────────────
+const canvas = document.getElementById('neural-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+// Nodes
+const NODE_COUNT = 55;
+const nodes = [];
+
+function initNodes() {
+  nodes.length = 0;
+  for (let i = 0; i < NODE_COUNT; i++) {
+    nodes.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height,
+      vx: (Math.random() - 0.5) * 0.22,
+      vy: (Math.random() - 0.5) * 0.18,
+      r: Math.random() * 2 + 1,
+      alpha: Math.random() * 0.4 + 0.1
+    });
+  }
+}
+initNodes();
+window.addEventListener('resize', initNodes);
+
+let frame = 0;
+
+function drawNeural() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Soft background gradient
+  const grad = ctx.createRadialGradient(
+    canvas.width * 0.35, canvas.height * 0.3, 0,
+    canvas.width * 0.5, canvas.height * 0.5, canvas.width * 0.8
+  );
+  grad.addColorStop(0, 'rgba(200,218,238,0.18)');
+  grad.addColorStop(0.5, 'rgba(214,226,240,0.10)');
+  grad.addColorStop(1, 'rgba(240,244,248,0)');
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Subtle gold accent glow top-right
+  const goldGrad = ctx.createRadialGradient(
+    canvas.width * 0.75, canvas.height * 0.2, 0,
+    canvas.width * 0.75, canvas.height * 0.2, canvas.width * 0.3
+  );
+  goldGrad.addColorStop(0, 'rgba(201,164,77,0.06)');
+  goldGrad.addColorStop(1, 'rgba(201,164,77,0)');
+  ctx.fillStyle = goldGrad;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // Wave lines (fluid, silk-like)
+  const t = frame * 0.004;
+  for (let w = 0; w < 5; w++) {
+    ctx.beginPath();
+    const amp = 28 + w * 12;
+    const freq = 0.0018 + w * 0.0004;
+    const phase = w * 1.1 + t * (0.6 + w * 0.12);
+    const yBase = canvas.height * (0.25 + w * 0.12);
+
+    ctx.moveTo(0, yBase);
+    for (let x = 0; x <= canvas.width; x += 4) {
+      const y = yBase
+        + Math.sin(x * freq + phase) * amp
+        + Math.sin(x * freq * 1.7 + phase * 1.3) * (amp * 0.45)
+        + Math.cos(x * freq * 0.5 + t) * (amp * 0.2);
+      ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = `rgba(${w < 2 ? '180,200,224' : '201,164,77'},${0.06 - w * 0.008})`;
+    ctx.lineWidth = w === 1 ? 1.5 : 1;
+    ctx.stroke();
+  }
+
+  // Node update + draw
+  const maxDist = 130;
+  for (let i = 0; i < nodes.length; i++) {
+    const n = nodes[i];
+    n.x += n.vx;
+    n.y += n.vy;
+    if (n.x < 0 || n.x > canvas.width) n.vx *= -1;
+    if (n.y < 0 || n.y > canvas.height) n.vy *= -1;
+
+    // Draw connections
+    for (let j = i + 1; j < nodes.length; j++) {
+      const m = nodes[j];
+      const dx = n.x - m.x, dy = n.y - m.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < maxDist) {
+        const alpha = (1 - dist / maxDist) * 0.09;
+        ctx.beginPath();
+        ctx.moveTo(n.x, n.y);
+        ctx.lineTo(m.x, m.y);
+        ctx.strokeStyle = `rgba(50,92,145,${alpha})`;
+        ctx.lineWidth = 0.8;
+        ctx.stroke();
+      }
+    }
+
+    // Draw node dot
+    ctx.beginPath();
+    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(50,92,145,${n.alpha * 0.6})`;
+    ctx.fill();
+  }
+
+  frame++;
+  requestAnimationFrame(drawNeural);
+}
+
+drawNeural();
+
+// ─── SCROLL REVEAL ───────────────────────────────────────────────
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((entry, i) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => entry.target.classList.add('visible'), 100);
+    }
+  });
+}, { threshold: 0.12 });
+
+reveals.forEach(el => io.observe(el));
+
+// ─── NAV SCROLL TINT ─────────────────────────────────────────────
+const navEl = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) {
+    navEl.style.background = 'rgba(240,244,248,0.88)';
+    navEl.style.boxShadow = '0 2px 24px rgba(15,42,68,0.06)';
+  } else {
+    navEl.style.background = 'rgba(240,244,248,0.7)';
+    navEl.style.boxShadow = 'none';
+  }
+});
+</script>
+</body>
+</html>
