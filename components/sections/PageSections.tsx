@@ -67,11 +67,11 @@ export function ProblemSection() {
 
 // ─── Lifecycle ───────────────────────────────────────────────────
 const STEPS = [
-  { label: 'Discover', icon: '◎', desc: 'Analyze your strengths, weaknesses, and interview readiness using AI.' },
-  { label: 'Diagnose', icon: '⬡', desc: 'Get detailed feedback on communication, confidence, and technical answers.' },
-  { label: 'Develop', icon: '⟡', desc: 'Improve with personalized practice questions and real interview scenarios.' },
-  { label: 'Demonstrate', icon: '◈', desc: 'Take realistic AI mock interviews that simulate actual company rounds.' },
-  { label: 'Deploy', icon: '↗', desc: 'Crack real interviews with confidence and track your progress.' },
+  { label: 'Discover', icon: '◎', desc: 'Identifying untapped potential and hidden talent patterns across ecosystem.' },
+  { label: 'Diagnose', icon: '⬡', desc: 'Applying deep-tech diagnostics to map cognitive and behavioral architecture.' },
+  { label: 'Develop', icon: '⟡', desc: 'Precision engineering of skills and mindsets for future-ready performance.' },
+  { label: 'Demonstrate', icon: '◈', desc: 'Creating high-fidelity enviornments for talent to prove its readiness ' },
+  { label: 'Deploy', icon: '↗', desc: 'Strategic integration of prepared talent into high-impact roles.' },
 ];
 
 export function LifecycleSection() {
@@ -519,26 +519,55 @@ const LOGOS = [
   { name: 'Sinhgad', logo: '/icons/sinhgad_logo.png' },
   { name: 'Wadia', logo: '/icons/wadia_logo.jpg' },
   { name: 'Y4D', logo: '/icons/y4d_logo.png' },
+  { name: 'Arihant', logo: '/icons/arihant_logo.png' },
+  { name: 'Panexa Core tech', logo: '/icons/panexa_logo.jpg' },
+  { name: 'Ideas to Impact', logo: '/icons/ideas_logo.png' },
+  { name: 'Padcare', logo: '/icons/padcare_logo.png' },
 ];
 
 export function TrustSection() {
   const ref = useReveal();
+
+  // Duplicate the logos to create a seamless loop
+  const duplicatedLogos = [...LOGOS, ...LOGOS];
+
   return (
     <section style={{ padding: '80px 0', textAlign: 'center' }}>
       <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
         <div ref={ref} className="reveal">
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'var(--blue-soft)', marginBottom: '34px', display: 'block', opacity: 0.8 }}>
-            Trusted by institutions across India
+            Trusted by institutions & individuals across India
           </span>
-          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '72px', flexWrap: 'wrap' as const }}>
-            {LOGOS.map(l => (
-              <div key={l.name} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
-                <span className="font-display" style={{ fontSize: '15px', fontWeight: 500, color: 'var(--blue-deep)', opacity: 0.9, letterSpacing: '0.05em' }}>
-                  {l.name}
-                </span>
-                <img src={l.logo} alt={l.name} style={{ height: '74px', objectFit: 'contain', opacity: 1 }} />
-              </div>
-            ))}
+
+          <div className="logo-ticker-container">
+            <div className="logo-ticker-track">
+              {duplicatedLogos.map((l, i) => (
+                <div key={`${l.name}-${i}`} className="logo-item" style={{ minWidth: '250px' }}>
+                  <span className="font-display" style={{
+                    fontSize: '13px',
+                    fontWeight: 600,
+                    color: 'var(--blue-deep)',
+                    opacity: 1,
+                    letterSpacing: '0.04em',
+                    marginBottom: '12px',
+                    whiteSpace: 'nowrap'
+                  }}>
+                    {l.name}
+                  </span>
+                  <img
+                    src={l.logo}
+                    alt={l.name}
+                    style={{
+                      height: '64px',
+                      maxWidth: '180px',
+                      objectFit: 'contain',
+                      opacity: 0.9,
+                      filter: 'grayscale(0.2) contrast(1.1)'
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -678,10 +707,10 @@ export function ContactSection() {
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(40,200,64,0.1)', color: '#28C840', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '30px', margin: '0 auto 24px' }}>✓</div>
               <h3 style={{ color: 'var(--blue-deep)', marginBottom: '12px' }}>Request Received</h3>
               <p style={{ color: 'var(--text-secondary)', fontWeight: 300, marginBottom: '32px' }}>Thank you for reaching out. Our team will contact you shortly.</p>
-              
+
               <div style={{ background: 'rgba(240,244,248,0.4)', borderRadius: '16px', padding: '32px', border: '1px solid var(--border)' }}>
                 <p style={{ fontSize: '14px', color: 'var(--blue-deep)', marginBottom: '20px', fontWeight: 500 }}>Want to skip the wait? Book a specific slot directly:</p>
-                <button 
+                <button
                   onClick={handleCalendlyPopup}
                   style={{
                     background: '#0F2A44',
