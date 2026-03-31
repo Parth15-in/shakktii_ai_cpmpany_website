@@ -42,10 +42,10 @@ export default function Footer() {
       position: 'relative',
       zIndex: 1,
     }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr', gap: '48px', marginBottom: '48px' }}>
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           <div>
-            <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '20px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '10px' }}>
+            <h3 style={{ fontFamily: "'Cormorant Garamond',serif", fontSize: '20px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '10px', whiteSpace: 'nowrap' }}>
               Shakktii AI
             </h3>
             <p style={{ fontSize: '13px', color: 'var(--text-mid)', fontWeight: 400, lineHeight: 1.7, maxWidth: '240px' }}>
@@ -89,7 +89,7 @@ export default function Footer() {
             </div>
           ))}
         </div>
-        <div style={{ borderTop: '1px solid var(--border)', paddingTop: '24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', fontSize: '12px', color: 'var(--text-mid)', fontWeight: 400 }}>
+        <div className="border-t border-border mt-12 pt-6 flex flex-col md:flex-row items-center justify-between gap-4 text-[12px] text-text-mid font-normal text-center md:text-left">
           <span>© 2025 Shakktii AI. All rights reserved.</span>
           <span>Engineering Human Potential</span>
         </div>

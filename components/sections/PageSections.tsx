@@ -794,7 +794,7 @@ export function ContactSection() {
                   opacity: status === 'loading' ? 0.7 : 1,
                   boxShadow: '0 4px 14px rgba(15, 42, 68, 0.25)'
                 }}>
-                  {status === 'loading' ? 'Sending...' : 'Schedule Consultation'}
+                  {status === 'loading' ? 'Sending...' : 'Partner With Us'}
                 </button>
                 {status === 'error' && (
                   <p style={{ color: '#FF5F57', fontSize: '12px', textAlign: 'center', marginTop: '12px' }}>Something went wrong. Please try again.</p>

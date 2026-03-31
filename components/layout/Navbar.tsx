@@ -15,10 +15,10 @@
    }, []);
  
    const navLinks = [
-     { name: 'MockMingle', href: '/#mockmingle' },
-     { name: 'Solutions', href: '/#solutions' },
-     { name: 'Insights', href: '/#insights' },
      { name: 'About', href: '/#about' },
+     { name: 'Products', href: '/#mockmingle' },
+     { name: 'Solutions', href: '/#solutions' },
+     { name: 'Team', href: '/#team' },
      { name: 'Contact', href: '/#footer' },
    ];
  
@@ -121,7 +121,7 @@
                whiteSpace: 'nowrap',
              }}
            >
-             Schedule Consultation
+             Partner With Us
            </Link>
  
            {/* Hamburger Button */}
@@ -144,10 +144,10 @@
                  <line x1="6" y1="6" x2="18" y2="18"></line>
                </svg>
              ) : (
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                 <line x1="3" y1="12" x2="21" y2="12"></line>
-                 <line x1="3" y1="6" x2="21" y2="6"></line>
-                 <line x1="3" y1="18" x2="21" y2="18"></line>
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                 <circle cx="12" cy="5" r="2" />
+                 <circle cx="12" cy="12" r="2" />
+                 <circle cx="12" cy="19" r="2" />
                </svg>
              )}
            </button>
@@ -239,7 +239,7 @@
                  textAlign: 'center',
                }}
              >
-               Schedule Consultation
+               Partner With Us
              </Link>
            </div>
          </div>
