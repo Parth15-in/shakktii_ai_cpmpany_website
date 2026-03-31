@@ -19,16 +19,18 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
   }, [showLogo, onClose]);
 
   return (
-    <section style={{
-      minHeight: '100vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      textAlign: 'center',
-      padding: '140px 60px 80px',
-      position: 'relative',
-      overflow: 'hidden',
-    }}>
+    <section 
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        textAlign: 'center',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+      className="px-6 py-[100px] md:pt-[140px] md:pb-[80px] md:px-[60px]"
+    >
       {/* Background Logo Watermark - Now Front-and-Center */}
       {showLogo && (
         <div 
@@ -63,25 +65,25 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
         </div>
       )}
 
-      <div className="animate-fadeup" style={{ maxWidth: '700px', position: 'relative', zIndex: 1 }}>
+      <div className="animate-fadeup" style={{ maxWidth: '700px', position: 'relative', zIndex: 1, width: '100%' }}>
         {/* Tagline */}
         <div style={{
-          fontSize: '11px',
+          fontSize: '10px',
           fontWeight: 600,
           letterSpacing: '0.14em',
           textTransform: 'uppercase',
           color: 'var(--blue-soft)',
-          marginBottom: '24px',
+          marginBottom: '20px',
           display: 'block',
         }}>
           Intelligence Infrastructure for the Future of Work
         </div>
 
         <h1 className="animate-fadeup-delay-1 font-display" style={{
-          fontSize: 'clamp(52px, 7vw, 84px)',
+          fontSize: 'clamp(38px, 8vw, 84px)',
           fontWeight: 500,
           color: 'var(--blue-deep)',
-          lineHeight: 1.05,
+          lineHeight: 1.1,
           letterSpacing: '-0.01em',
           marginBottom: '24px',
           textTransform: 'uppercase',
@@ -90,7 +92,7 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
         </h1>
 
         <p className="animate-fadeup-delay-2" style={{
-          fontSize: '17px',
+          fontSize: '16px',
           fontWeight: 300,
           color: 'var(--text-secondary)',
           lineHeight: 1.7,
@@ -100,28 +102,26 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
           Shakktii AI builds the infrastructure that helps individuals and institutions discover, develop and deploy human potential.
         </p>
 
-        <div className="animate-fadeup-delay-3" style={{
-          display: 'flex',
-          gap: '16px',
-          justifyContent: 'center',
-          flexWrap: 'wrap',
-        }}>
+        <div className="animate-fadeup-delay-3 flex flex-col sm:flex-row gap-4 sm:gap-3 justify-center items-center px-4 sm:px-0">
           <Link href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
             background: 'var(--blue-deep)',
             color: 'white',
-            padding: '13px 28px',
-            borderRadius: '7px',
+            padding: '16px 24px',
+            borderRadius: '10px',
             fontSize: '14px', fontWeight: 600, textDecoration: 'none',
             letterSpacing: '0.01em',
             transition: 'all 0.2s',
             boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
+            width: '100%',
+            maxWidth: '320px',
+            textAlign: 'center',
           }}>Explore Our Project
           </Link>
           <Link href="/#mockmingle" style={{
             background: 'rgba(255,255,255,0.5)',
             color: 'var(--blue-deep)',
-            padding: '13px 28px',
-            borderRadius: '7px',
+            padding: '16px 24px',
+            borderRadius: '10px',
             fontSize: '14px',
             fontWeight: 600,
             textDecoration: 'none',
@@ -129,6 +129,9 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
             border: '1px solid var(--border)',
             backdropFilter: 'blur(10px)',
             transition: 'all 0.2s',
+            width: '100%',
+            maxWidth: '320px',
+            textAlign: 'center',
           }}>
             About MockMingle
           </Link>
@@ -136,5 +139,6 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
       </div>
 
     </section>
+
   );
 }

@@ -1,9 +1,16 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
   title: 'Shakktii AI — Engineering Human Potential',
   description: 'Shakktii AI builds the infrastructure that helps individuals and institutions discover, develop and deploy human potential.',
+};
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 import SmoothScroll from '@/components/layout/SmoothScroll';

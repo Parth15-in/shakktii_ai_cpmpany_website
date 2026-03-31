@@ -1,116 +1,249 @@
 'use client';
-
-import { useEffect, useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-
-export default function Navbar({ onLogoClick }: { onLogoClick: (e: React.MouseEvent) => void }) {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handler = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', handler);
-    return () => window.removeEventListener('scroll', handler);
-  }, []);
-
-  return (
-    <nav
-      style={{
-        position: 'fixed',
-        top: 0, left: 0, right: 0,
-        zIndex: 1000,
-        padding: scrolled ? '12px 60px' : '16px 60px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        background: scrolled ? 'rgba(240,244,248,0.88)' : 'rgba(240,244,248,0.7)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: '1px solid rgba(210,225,240,0.4)',
-        boxShadow: scrolled ? '0 2px 24px rgba(15,42,68,0.06)' : 'none',
-        transition: 'all 0.3s ease-out',
-      }}
-    >
-      <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
-        <div 
-          onClick={(e) => { e.stopPropagation(); onLogoClick(e); }}
-          style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
-          title="Toggle Full View"
-        >
-          <Image
-            src="/shakktii-logo.png"
-            alt="Shakktii AI Logo"
-            width={54}
-            height={54}
-            quality={100}
-            unoptimized
-            style={{
-              objectFit: 'cover',
-              borderRadius: '50%',
-              transform: 'scale(1.05)', 
-              flexShrink: 0,
-            }}
-            priority
-          />
-        </div>
-        <Link href="/" style={{
-          textDecoration: 'none',
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '20px',
-          fontWeight: 600,
-          color: 'var(--blue-deep)',
-          letterSpacing: '0.02em',
-        }}>
-          Shakktii AI
-        </Link>
-      </div>
-
-      <ul style={{ display: 'flex', alignItems: 'center', gap: '36px', listStyle: 'none' }}>
-        {['MockMingle', 'Solutions', 'Insights', 'About', 'Contact'].map((item) => {
-          const href = 
-            item === 'MockMingle' ? '/#mockmingle' :
-            item === 'Solutions' ? '/#solutions' :
-            item === 'Insights' ? '/#insights' :
-            item === 'About' ? '/#about' :
-            item === 'Contact' ? '/#footer' :
-            `/${item.toLowerCase()}`;
-          return (
-            <li key={item}>
-              <Link
-                href={href}
-                style={{
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  color: 'var(--text-mid)',
-                  textDecoration: 'none',
-                  letterSpacing: '0.01em',
-                  transition: 'color 0.2s',
-                }}
-              >
-                {item}
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
-
-      <Link
-        href="/#contact"
-        style={{
-          background: 'var(--gold)',
-          color: 'white',
-          padding: '9px 20px',
-          borderRadius: '6px',
-          fontSize: '13px',
-          fontWeight: 500,
-          textDecoration: 'none',
-          letterSpacing: '0.01em',
-          transition: 'all 0.2s',
-          whiteSpace: 'nowrap',
-        }}
-      >
-        Schedule Consultation
-      </Link>
-    </nav>
-  );
-}
+ 
+ import { useEffect, useState } from 'react';
+ import Link from 'next/link';
+ import Image from 'next/image';
+ 
+ export default function Navbar({ onLogoClick }: { onLogoClick: (e: React.MouseEvent) => void }) {
+   const [scrolled, setScrolled] = useState(false);
+   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+ 
+   useEffect(() => {
+     const handler = () => setScrolled(window.scrollY > 60);
+     window.addEventListener('scroll', handler);
+     return () => window.removeEventListener('scroll', handler);
+   }, []);
+ 
+   const navLinks = [
+     { name: 'MockMingle', href: '/#mockmingle' },
+     { name: 'Solutions', href: '/#solutions' },
+     { name: 'Insights', href: '/#insights' },
+     { name: 'About', href: '/#about' },
+     { name: 'Contact', href: '/#footer' },
+   ];
+ 
+   return (
+     <nav
+       style={{
+         position: 'fixed',
+         top: 0, left: 0, right: 0,
+         zIndex: 1000,
+         padding: scrolled ? '12px 20px' : '16px 20px',
+         display: 'flex',
+         alignItems: 'center',
+         justifyContent: 'space-between',
+         background: scrolled ? 'rgba(240,244,248,0.92)' : 'rgba(240,244,248,0.7)',
+         backdropFilter: 'blur(20px)',
+         WebkitBackdropFilter: 'blur(20px)',
+         borderBottom: '1px solid rgba(210,225,240,0.4)',
+         boxShadow: scrolled ? '0 2px 24px rgba(15,42,68,0.06)' : 'none',
+         transition: 'all 0.3s ease-out',
+       }}
+     >
+       {/* Max-width container for desktop */}
+       <div style={{
+         maxWidth: '1200px',
+         width: '100%',
+         margin: '0 auto',
+         display: 'flex',
+         alignItems: 'center',
+         justifyContent: 'space-between',
+       }}>
+         <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
+           <div 
+             onClick={(e) => { e.stopPropagation(); onLogoClick(e); }}
+             style={{ cursor: 'pointer', display: 'flex', alignItems: 'center' }}
+             title="Toggle Full View"
+           >
+             <Image
+               src="/shakktii-logo.png"
+               alt="Shakktii AI Logo"
+               width={44}
+               height={44}
+               quality={100}
+               unoptimized
+               style={{
+                 objectFit: 'cover',
+                 borderRadius: '50%',
+                 flexShrink: 0,
+               }}
+               priority
+             />
+           </div>
+           <Link href="/" style={{
+             textDecoration: 'none',
+             fontFamily: "'Cormorant Garamond', serif",
+             fontSize: '18px',
+             fontWeight: 600,
+             color: 'var(--blue-deep)',
+             letterSpacing: '0.02em',
+             whiteSpace: 'nowrap',
+           }}>
+             Shakktii AI
+           </Link>
+         </div>
+ 
+         {/* Desktop Links */}
+         <ul className="hidden md:flex items-center gap-8 list-none m-0 p-0">
+           {navLinks.map((item) => (
+             <li key={item.name}>
+               <Link
+                 href={item.href}
+                 style={{
+                   fontSize: '14px',
+                   fontWeight: 400,
+                   color: 'var(--text-mid)',
+                   textDecoration: 'none',
+                   letterSpacing: '0.01em',
+                   transition: 'color 0.2s',
+                 }}
+               >
+                 {item.name}
+               </Link>
+             </li>
+           ))}
+         </ul>
+ 
+         <div className="flex items-center gap-3">
+           <Link
+             href="/#contact"
+             className="hidden sm:inline-block"
+             style={{
+               background: 'var(--gold)',
+               color: 'white',
+               padding: '9px 20px',
+               borderRadius: '6px',
+               fontSize: '13px',
+               fontWeight: 500,
+               textDecoration: 'none',
+               letterSpacing: '0.01em',
+               transition: 'all 0.2s',
+               whiteSpace: 'nowrap',
+             }}
+           >
+             Schedule Consultation
+           </Link>
+ 
+           {/* Hamburger Button */}
+           <button 
+             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+             style={{
+               background: 'none',
+               border: 'none',
+               cursor: 'pointer',
+               padding: '8px',
+               justifyContent: 'center',
+               color: 'var(--blue-deep)',
+             }}
+             className="md:hidden flex items-center"
+             aria-label="Toggle Menu"
+           >
+             {mobileMenuOpen ? (
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                 <line x1="18" y1="6" x2="6" y2="18"></line>
+                 <line x1="6" y1="6" x2="18" y2="18"></line>
+               </svg>
+             ) : (
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                 <line x1="3" y1="12" x2="21" y2="12"></line>
+                 <line x1="3" y1="6" x2="21" y2="6"></line>
+                 <line x1="3" y1="18" x2="21" y2="18"></line>
+               </svg>
+             )}
+           </button>
+         </div>
+       </div>
+ 
+       {/* Mobile Menu Overlay */}
+       {mobileMenuOpen && (
+         <div 
+           style={{
+             position: 'fixed',
+             top: 0,
+             left: 0,
+             right: 0,
+             bottom: 0,
+             background: 'rgba(240,244,248,1)',
+             backdropFilter: 'blur(20px)',
+             zIndex: 2000,
+             display: 'flex',
+             flexDirection: 'column',
+             padding: '16px 20px',
+             animation: 'fadeUp 0.3s ease-out both',
+             overflowY: 'auto'
+           }}
+           className="md:hidden"
+         >
+           {/* Header in Overlay */}
+           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
+             <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
+               <Image
+                 src="/shakktii-logo.png"
+                 alt="Shakktii AI Logo"
+                 width={40}
+                 height={40}
+                 quality={100}
+                 unoptimized
+                 style={{ objectFit: 'cover', borderRadius: '50%' }}
+               />
+               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: 600, color: 'var(--blue-deep)' }}>
+                 Shakktii AI
+               </span>
+             </div>
+             <button 
+               onClick={() => setMobileMenuOpen(false)}
+               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', color: 'var(--blue-deep)' }}
+             >
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                 <line x1="18" y1="6" x2="6" y2="18"></line>
+                 <line x1="6" y1="6" x2="18" y2="18"></line>
+               </svg>
+             </button>
+           </div>
+ 
+           {/* Links List */}
+           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+             {navLinks.map((item) => (
+               <Link
+                 key={item.name}
+                 href={item.href}
+                 onClick={() => setMobileMenuOpen(false)}
+                 style={{
+                   fontSize: '20px',
+                   fontWeight: 500,
+                   color: 'var(--blue-deep)',
+                   textDecoration: 'none',
+                   padding: '12px 0',
+                   borderBottom: '1px solid rgba(15,42,68,0.05)',
+                 }}
+               >
+                 {item.name}
+               </Link>
+             ))}
+           </div>
+ 
+           {/* CTA at Bottom */}
+           <div style={{ marginTop: '32px' }}>
+             <Link
+               href="/#contact"
+               onClick={() => setMobileMenuOpen(false)}
+               style={{
+                 background: 'var(--blue-deep)',
+                 color: 'white',
+                 padding: '16px',
+                 borderRadius: '10px',
+                 fontSize: '16px',
+                 fontWeight: 600,
+                 textDecoration: 'none',
+                 display: 'block',
+                 textAlign: 'center',
+               }}
+             >
+               Schedule Consultation
+             </Link>
+           </div>
+         </div>
+       )}
+     </nav>
+   );
+ }

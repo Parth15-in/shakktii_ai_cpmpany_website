@@ -22,15 +22,15 @@ function useReveal() {
 export function ProblemSection() {
   const ref = useReveal();
   return (
-    <section id="about" style={{ padding: '120px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
+    <section id="about" className="py-[80px] md:py-[120px]">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={ref} className="reveal" style={{
           background: 'rgba(255,255,255,0.55)',
           backdropFilter: 'blur(24px)',
           WebkitBackdropFilter: 'blur(24px)',
           border: '1px solid rgba(255,255,255,0.7)',
           borderRadius: '20px',
-          padding: '80px 60px',
+          padding: '60px 40px',
           boxShadow: '0 8px 60px rgba(15,42,68,0.06)',
           textAlign: 'center',
         }}>
@@ -41,7 +41,7 @@ export function ProblemSection() {
           }}>OUR BELIEF</span>
           <div style={{ width: '48px', height: '2px', background: 'linear-gradient(90deg,var(--gold),transparent)', margin: '0 auto 24px' }} />
           <h2 className="font-display" style={{
-            fontSize: 'clamp(36px,4.5vw,56px)',
+            fontSize: 'clamp(32px,4.5vw,56px)',
             fontWeight: 500,
             color: 'var(--blue-deep)',
             lineHeight: 1.2,
@@ -51,7 +51,7 @@ export function ProblemSection() {
             The world does not lack talent.<br />It lacks systems that recognize it.
           </h2>
           <p className="font-display" style={{
-            fontSize: '20px',
+            fontSize: '18px',
             fontWeight: 400,
             color: 'var(--blue-soft)',
             fontStyle: 'italic',
@@ -80,25 +80,27 @@ export function LifecycleSection() {
   const trackRef = useReveal();
 
   return (
-    <section id="lifecycle" style={{ padding: '100px 0', overflow: 'hidden' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
-        <div ref={headRef} className="reveal" style={{ textAlign: 'center', marginBottom: '84px' }}>
+    <section id="lifecycle" className="py-[80px] md:py-[100px] overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
+        <div ref={headRef} className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>The Architecture</span>
-          <h2 className="font-display" style={{ fontSize: 'clamp(32px,4vw,48px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
+          <h2 className="font-display" style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
             A Structured Intelligence Framework
           </h2>
-          <p style={{ fontSize: '15px', color: 'var(--text-secondary)', fontWeight: 300 }}>
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300 }}>
             A structured intelligence architecture designed to unlock human capability at scale.
           </p>
         </div>
 
-        <div ref={trackRef} className="reveal" style={{
+        <div ref={trackRef} className="reveal no-scrollbar" style={{
           display: 'flex',
           alignItems: 'flex-start',
-          justifyContent: 'center',
-          padding: '0 20px',
+          justifyContent: 'flex-start',
+          padding: '20px 0',
           position: 'relative',
-          gap: '0',
+          gap: '20px',
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch',
         }}>
           {STEPS.map((step, i) => (
             <Fragment key={step.label}>
@@ -106,8 +108,8 @@ export function LifecycleSection() {
                 display: 'flex',
                 flexDirection: 'column' as const,
                 alignItems: 'center',
-                flex: 1,
-                maxWidth: '240px',
+                flexShrink: 0,
+                width: '180px',
                 zIndex: 2,
               }}>
                 {/* Step Item */}
@@ -123,7 +125,7 @@ export function LifecycleSection() {
                     userSelect: 'none' as const,
                   }}>
                   <div style={{
-                    width: '64px', height: '64px',
+                    width: '56px', height: '56px',
                     borderRadius: '50%',
                     background: activeIdx === i ? 'rgba(15,42,68,0.12)' : 'rgba(255,255,255,0.7)',
                     border: `1.5px solid ${activeIdx === i ? 'var(--blue-soft)' : 'var(--border)'}`,
@@ -134,13 +136,13 @@ export function LifecycleSection() {
                     boxShadow: activeIdx === i ? '0 8px 30px rgba(15,42,68,0.1)' : 'none',
                   }}>
                     <span style={{
-                      fontSize: '22px',
+                      fontSize: '20px',
                       color: activeIdx === i ? 'var(--blue-deep)' : 'var(--blue-soft)',
                       transition: 'color 0.4s ease'
                     }}>{step.icon}</span>
                   </div>
                   <span style={{
-                    fontSize: '11px', fontWeight: 600,
+                    fontSize: '10px', fontWeight: 600,
                     letterSpacing: '0.12em', textTransform: 'uppercase' as const,
                     color: activeIdx === i ? 'var(--blue-deep)' : 'var(--text-secondary)',
                     transition: 'color 0.4s ease',
@@ -150,53 +152,43 @@ export function LifecycleSection() {
                   </span>
                 </div>
 
-                {/* Connector + Detail Box */}
+                {/* Detail Box */}
                 <div style={{
                   display: 'flex',
                   flexDirection: 'column' as const,
                   alignItems: 'center',
-                  width: '90%',
+                  width: '100%',
                   overflow: 'hidden',
                   maxHeight: activeIdx === i ? '300px' : '0',
                   transition: 'max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
                 }}>
-                  {/* Connector stem from label */}
                   <div style={{
                     width: '1px',
-                    height: '12px',
+                    height: '10px',
                     background: 'var(--blue-soft)',
                     opacity: 0.3,
-                    marginTop: '10px',
+                    marginTop: '8px',
                     flexShrink: 0,
                   }} />
                   <div style={{
-                    width: '5px', height: '5px',
-                    borderRadius: '50%',
-                    background: 'var(--blue-soft)',
-                    opacity: 0.4,
-                    flexShrink: 0,
-                  }} />
-                  <div style={{
-                    marginTop: '6px',
-                    padding: '14px 16px',
+                    marginTop: '4px',
+                    padding: '12px',
                     borderRadius: '12px',
-                    background: 'rgba(255,255,255,0.5)',
-                    border: '1px solid rgba(255,255,255,0.7)',
+                    background: 'rgba(255,255,255,0.6)',
+                    border: '1px solid rgba(255,255,255,0.8)',
                     backdropFilter: 'blur(16px)',
                     boxShadow: '0 8px 25px rgba(15,42,68,0.05)',
                     textAlign: 'center',
-                    transformOrigin: 'top center',
                     opacity: activeIdx === i ? 1 : 0,
-                    transform: activeIdx === i ? 'scaleY(1) translateY(0)' : 'scaleY(0.92) translateY(-4px)',
-                    transition: 'opacity 0.25s ease, transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+                    transform: activeIdx === i ? 'translateY(0)' : 'translateY(-10px)',
+                    transition: 'all 0.3s ease',
                   }}>
                     <p style={{
-                      fontSize: '12px',
+                      fontSize: '11px',
                       color: 'var(--blue-deep)',
-                      lineHeight: 1.6,
+                      lineHeight: 1.5,
                       fontWeight: 300,
                       margin: 0,
-                      letterSpacing: '0.01em',
                     }}>
                       {step.desc}
                     </p>
@@ -207,9 +199,9 @@ export function LifecycleSection() {
               {/* Arrow */}
               {i < STEPS.length - 1 && (
                 <div style={{
-                  paddingTop: '32px',
+                  paddingTop: '28px',
                   color: 'var(--gold)',
-                  fontSize: '16px',
+                  fontSize: '14px',
                   opacity: 0.3,
                   flexShrink: 0,
                 }}>
@@ -244,135 +236,140 @@ const SCORES = [
 export function MockMingleSection() {
   const ref = useReveal();
   return (
-    <section id="mockmingle" style={{ padding: '100px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
-        <div ref={ref} className="reveal" style={{
+    <section id="mockmingle" className="py-[80px] md:py-[100px]">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
+          <div ref={ref} className="reveal" style={{
           background: 'rgba(255,255,255,0.55)',
           backdropFilter: 'blur(24px)',
           border: '1px solid rgba(255,255,255,0.7)',
           borderRadius: '20px',
-          padding: '60px',
           boxShadow: '0 8px 60px rgba(15,42,68,0.06)',
         }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
-            {/* Left */}
-            <div>
-              <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>Product</span>
-              <h2 className="font-display" style={{ fontSize: 'clamp(38px,4vw,56px)', fontWeight: 500, color: 'var(--blue-deep)', lineHeight: 1.1, marginBottom: '12px' }}>
-                MockMingle
-              </h2>
-              <p style={{ fontSize: '17px', color: 'var(--text-secondary)', fontWeight: 300, marginBottom: '12px', lineHeight: 1.6 }}>
-                The Operating System for Career Readiness
-              </p>
-              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.7, marginBottom: '36px' }}>
-                A structured intelligence architecture designed to unlock human capability at scale.
-              </p>
-              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '10px', marginBottom: '32px' }}>
-                {FEATURES.map(f => (
-                  <div key={f.label} style={{
-                    display: 'flex', alignItems: 'center', gap: '7px',
-                    background: 'rgba(255,255,255,0.6)',
-                    border: '1px solid var(--border)',
-                    borderRadius: '100px',
-                    padding: '7px 14px',
-                    fontSize: '12px', fontWeight: 500,
-                    color: 'var(--text-mid)',
-                    backdropFilter: 'blur(10px)',
-                  }}>
-                    <div style={{
-                      width: '16px', height: '16px',
-                      background: 'var(--blue-deep)',
-                      borderRadius: '50%',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      fontSize: '9px', color: 'white',
-                    }}>{f.icon}</div>
-                    {f.label}
-                  </div>
-                ))}
-              </div>
-              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' as const }}>
-                <a href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
-                  background: 'var(--blue-deep)', color: 'white',
-                  padding: '13px 28px', borderRadius: '7px',
-                  fontSize: '14px', textDecoration: 'none',
-                  letterSpacing: '0.01em',
-                  fontWeight: 600,
-                  transition: 'all 0.2s',
-                  boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
-                }}>Explore MockMingle</a>
-              </div>
-            </div>
-
-            {/* Browser Mockup */}
-            <div className="animate-float" style={{
-              background: 'rgba(255,255,255,0.75)',
-              border: '1px solid rgba(255,255,255,0.9)',
-              borderRadius: '14px',
-              boxShadow: '0 24px 80px rgba(15,42,68,0.12), 0 4px 20px rgba(15,42,68,0.06)',
-              overflow: 'hidden',
-            }}>
-              {/* Browser bar */}
-              <div style={{ background: 'rgba(240,244,248,0.9)', padding: '10px 16px', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--border)' }}>
-                {['#FF5F57', '#FFBD2E', '#28C840'].map((c, i) => (
-                  <div key={i} style={{ width: '10px', height: '10px', borderRadius: '50%', background: c }} />
-                ))}
-                <div style={{ flex: 1, background: 'rgba(255,255,255,0.7)', border: '1px solid var(--border)', borderRadius: '5px', padding: '4px 10px', fontSize: '11px', color: 'var(--text-secondary)', marginLeft: '8px' }}>
-                  app.mockmingle.ai
-                </div>
-              </div>
-
-              {/* Browser content */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', minHeight: '280px' }}>
-                {/* Video side */}
-                <div style={{
-                  background: 'linear-gradient(135deg,#1a3a5c 0%,#0d2035 100%)',
-                  display: 'flex', flexDirection: 'column' as const,
-                  alignItems: 'center', justifyContent: 'center',
-                  padding: '24px', position: 'relative', overflow: 'hidden',
-                }}>
-                  <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at 40% 30%,rgba(50,92,145,0.3) 0%,transparent 70%)', pointerEvents: 'none' }} />
-                  <div style={{ width: '70px', height: '70px', borderRadius: '50%', background: 'linear-gradient(135deg,#3a6491,#2a4e73)', border: '2px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
-                    <svg width="36" height="36" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
-                      <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                    </svg>
-                  </div>
-                  <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}>AI Interview Session</div>
-                  <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
-                    <div style={{ width: '28px', height: '28px', borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <svg width="10" height="10" viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>
-                    </div>
-                    <div style={{ flex: 1, height: '3px', background: 'rgba(255,255,255,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
-                      <div style={{ height: '100%', width: '45%', background: 'var(--gold)', borderRadius: '2px' }} />
-                    </div>
-                    <span style={{ fontSize: '9px', color: 'rgba(255,255,255,0.5)' }}>04:32</span>
-                  </div>
-                </div>
-
-                {/* Panel side */}
-                <div style={{ background: 'rgba(248,250,252,0.95)', padding: '16px', display: 'flex', flexDirection: 'column' as const, gap: '8px' }}>
-                  <div style={{ fontSize: '10px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--text-secondary)', marginBottom: '4px' }}>
-                    Performance Analysis
-                  </div>
-                  {SCORES.map(s => (
-                    <div key={s.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
-                      <span style={{ fontSize: '11px', color: 'var(--text-mid)', fontWeight: 400, whiteSpace: 'nowrap' as const, minWidth: '80px' }}>{s.label}</span>
-                      <div style={{ flex: 1, height: '5px', background: 'var(--border)', borderRadius: '3px', overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: `${s.val}%`, borderRadius: '3px', background: 'linear-gradient(90deg,var(--blue-soft),var(--blue-deep))' }} />
-                      </div>
-                      <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--blue-deep)', minWidth: '28px', textAlign: 'right' as const }}>{s.val}</span>
+          {/* Use CSS class for padding instead of inline style for responsiveness */}
+          <div className="p-6 md:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-[60px] items-center">
+              {/* Left */}
+              <div>
+                <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>Product</span>
+                <h2 className="font-display" style={{ fontSize: 'clamp(32px,4vw,56px)', fontWeight: 500, color: 'var(--blue-deep)', lineHeight: 1.1, marginBottom: '12px' }}>
+                  MockMingle
+                </h2>
+                <p style={{ fontSize: '16px', color: 'var(--text-secondary)', fontWeight: 300, marginBottom: '12px', lineHeight: 1.6 }}>
+                  The Operating System for Career Readiness
+                </p>
+                <p style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.7, marginBottom: '32px' }}>
+                  A structured intelligence architecture designed to unlock human capability at scale.
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: '8px', marginBottom: '32px' }}>
+                  {FEATURES.map(f => (
+                    <div key={f.label} style={{
+                      display: 'flex', alignItems: 'center', gap: '7px',
+                      background: 'rgba(255,255,255,0.6)',
+                      border: '1px solid var(--border)',
+                      borderRadius: '100px',
+                      padding: '6px 12px',
+                      fontSize: '11px', fontWeight: 500,
+                      color: 'var(--text-mid)',
+                      backdropFilter: 'blur(10px)',
+                    }}>
+                      <div style={{
+                        width: '14px', height: '14px',
+                        background: 'var(--blue-deep)',
+                        borderRadius: '50%',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center',
+                        fontSize: '8px', color: 'white',
+                      }}>{f.icon}</div>
+                      {f.label}
                     </div>
                   ))}
-                  <div style={{ marginTop: 'auto', display: 'flex', gap: '6px', paddingTop: '8px' }}>
-                    {['Practice more', 'View report', 'Schedule'].map((l, i) => (
-                      <div key={l} style={{
-                        flex: 1, background: i === 2 ? 'var(--gold)' : 'var(--border)',
-                        borderRadius: '4px', padding: '5px 6px',
-                        fontSize: '9px', fontWeight: 500,
-                        color: i === 2 ? 'white' : 'var(--text-mid)',
-                        textAlign: 'center' as const,
-                        whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis',
-                      }}>{l}</div>
+                </div>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' as const }}>
+                  <a href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
+                    background: 'var(--blue-deep)', color: 'white',
+                    padding: '12px 24px', borderRadius: '7px',
+                    fontSize: '13px', textDecoration: 'none',
+                    letterSpacing: '0.01em',
+                    fontWeight: 600,
+                    transition: 'all 0.2s',
+                    boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
+                    width: '100%',
+                    textAlign: 'center',
+                  }} className="md:w-auto">Explore MockMingle</a>
+                </div>
+              </div>
+
+              {/* Browser Mockup */}
+              <div className="animate-float" style={{
+                background: 'rgba(255,255,255,0.75)',
+                border: '1px solid rgba(255,255,255,0.9)',
+                borderRadius: '14px',
+                boxShadow: '0 24px 80px rgba(15,42,68,0.12), 0 4px 20px rgba(15,42,68,0.06)',
+                overflow: 'hidden',
+              }}>
+                {/* Browser bar */}
+                <div style={{ background: 'rgba(240,244,248,0.9)', padding: '8px 12px', display: 'flex', alignItems: 'center', gap: '8px', borderBottom: '1px solid var(--border)' }}>
+                  {['#FF5F57', '#FFBD2E', '#28C840'].map((c, i) => (
+                    <div key={i} style={{ width: '8px', height: '8px', borderRadius: '50%', background: c }} />
+                  ))}
+                  <div style={{ flex: 1, background: 'rgba(255,255,255,0.7)', border: '1px solid var(--border)', borderRadius: '5px', padding: '3px 8px', fontSize: '10px', color: 'var(--text-secondary)', marginLeft: '8px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                    app.mockmingle.ai
+                  </div>
+                </div>
+
+                {/* Browser content */}
+                <div className="grid grid-cols-1 sm:grid-cols-2" style={{ minHeight: '260px' }}>
+                  {/* Video side */}
+                  <div style={{
+                    background: 'linear-gradient(135deg,#1a3a5c 0%,#0d2035 100%)',
+                    display: 'flex', flexDirection: 'column' as const,
+                    alignItems: 'center', justifyContent: 'center',
+                    padding: '24px', position: 'relative', overflow: 'hidden',
+                    minHeight: '180px',
+                  }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at 40% 30%,rgba(50,92,145,0.3) 0%,transparent 70%)', pointerEvents: 'none' }} />
+                    <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg,#3a6491,#2a4e73)', border: '2px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
+                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+                      </svg>
+                    </div>
+                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}>AI Interview Session</div>
+                    <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
+                      <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                        <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>
+                      </div>
+                      <div style={{ flex: 1, height: '3px', background: 'rgba(255,255,255,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: '45%', background: 'var(--gold)', borderRadius: '2px' }} />
+                      </div>
+                      <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.5)' }}>04:32</span>
+                    </div>
+                  </div>
+
+                  {/* Panel side */}
+                  <div style={{ background: 'rgba(248,250,252,0.95)', padding: '16px', display: 'flex', flexDirection: 'column' as const, gap: '8px' }}>
+                    <div style={{ fontSize: '9px', fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase' as const, color: 'var(--text-secondary)', marginBottom: '4px' }}>
+                      Performance Analysis
+                    </div>
+                    {SCORES.map(s => (
+                      <div key={s.label} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '8px' }}>
+                        <span style={{ fontSize: '10px', color: 'var(--text-mid)', fontWeight: 400, whiteSpace: 'nowrap' as const, minWidth: '70px' }}>{s.label}</span>
+                        <div style={{ flex: 1, height: '4px', background: 'var(--border)', borderRadius: '3px', overflow: 'hidden' }}>
+                          <div style={{ height: '100%', width: `${s.val}%`, borderRadius: '3px', background: 'linear-gradient(90deg,var(--blue-soft),var(--blue-deep))' }} />
+                        </div>
+                        <span style={{ fontSize: '10px', fontWeight: 600, color: 'var(--blue-deep)', minWidth: '24px', textAlign: 'right' as const }}>{s.val}</span>
+                      </div>
                     ))}
+                    <div style={{ marginTop: 'auto', display: 'flex', gap: '6px', paddingTop: '8px' }}>
+                      {['Practice more', 'View report', 'Schedule'].map((l, i) => (
+                        <div key={l} style={{
+                          flex: 1, background: i === 2 ? 'var(--gold)' : 'var(--border)',
+                          borderRadius: '4px', padding: '5px 4px',
+                          fontSize: '8px', fontWeight: 500,
+                          color: i === 2 ? 'white' : 'var(--text-mid)',
+                          textAlign: 'center' as const,
+                          whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis',
+                        }}>{l}</div>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -428,6 +425,7 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
         perspective: '1000px',
         cursor: 'pointer',
         scrollMarginTop: '120px',
+        height: '200px',
       }}
     >
       <div style={{
@@ -446,23 +444,24 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           background: 'rgba(255,255,255,0.6)',
           border: '1px solid rgba(255,255,255,0.8)',
           borderRadius: '14px',
-          padding: '28px 20px',
+          padding: '20px 16px',
           backdropFilter: 'blur(16px)',
           textAlign: 'center',
           boxShadow: '0 4px 20px rgba(15,42,68,0.04)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
+          justifyContent: 'center',
         }}>
           <div style={{
-            width: '48px', height: '48px',
-            marginBottom: '16px',
+            width: '40px', height: '40px',
+            marginBottom: '12px',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <img src={s.icon} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '8px' }}>{s.title}</h3>
-          <p style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.6 }}>{s.desc}</p>
+          <h3 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '6px' }}>{s.title}</h3>
+          <p style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.4 }}>{s.desc}</p>
         </div>
 
         {/* Back */}
@@ -472,7 +471,7 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           background: 'var(--blue-deep)',
           border: '1px solid rgba(255,255,255,0.8)',
           borderRadius: '14px',
-          padding: '28px 20px',
+          padding: '20px 16px',
           textAlign: 'center',
           boxShadow: '0 8px 30px rgba(15,42,68,0.1)',
           display: 'flex',
@@ -481,8 +480,8 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           justifyContent: 'center',
           transform: 'rotateY(180deg)',
         }}>
-          <h3 style={{ fontSize: '14px', fontWeight: 600, color: 'var(--gold)', marginBottom: '12px' }}>{s.title}</h3>
-          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.9)', fontWeight: 300, lineHeight: 1.6 }}>{s.backText}</p>
+          <h3 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--gold)', marginBottom: '10px' }}>{s.title}</h3>
+          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.9)', fontWeight: 300, lineHeight: 1.5 }}>{s.backText}</p>
         </div>
       </div>
     </div>
@@ -493,18 +492,18 @@ export function SolutionsSection() {
   const headerRef = useReveal();
   const gridRef = useReveal();
   return (
-    <section id="solutions" style={{ padding: '100px 0' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
+    <section id="solutions" className="py-[80px] md:py-[100px]">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={headerRef} className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>Solutions</span>
-          <h2 className="font-display" style={{ fontSize: 'clamp(34px,4vw,52px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
+          <h2 className="font-display" style={{ fontSize: 'clamp(30px,4vw,52px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
             Solutions for Institutions and Individuals
           </h2>
-          <p style={{ fontSize: '15px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '500px', margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '500px', margin: '0 auto', lineHeight: 1.7 }}>
             Intelligence infrastructure designed to guide, assess, and prepare for the future of work.
           </p>
         </div>
-        <div ref={gridRef} className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: '16px' }}>
+        <div ref={gridRef} className="reveal grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
           {SOLUTIONS.map(s => (
             <SolutionCard key={s.title} s={s} />
           ))}
@@ -532,8 +531,8 @@ export function TrustSection() {
   const duplicatedLogos = [...LOGOS, ...LOGOS];
 
   return (
-    <section style={{ padding: '80px 0', textAlign: 'center' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
+    <section className="py-[60px] md:py-[80px] text-center overflow-hidden">
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={ref} className="reveal">
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.12em', textTransform: 'uppercase' as const, color: 'var(--blue-soft)', marginBottom: '34px', display: 'block', opacity: 0.8 }}>
             Trusted by institutions & individuals across India
@@ -542,14 +541,14 @@ export function TrustSection() {
           <div className="logo-ticker-container">
             <div className="logo-ticker-track">
               {duplicatedLogos.map((l, i) => (
-                <div key={`${l.name}-${i}`} className="logo-item" style={{ minWidth: '250px' }}>
+                <div key={`${l.name}-${i}`} className="logo-item" style={{ minWidth: '200px' }}>
                   <span className="font-display" style={{
-                    fontSize: '13px',
+                    fontSize: '12px',
                     fontWeight: 600,
                     color: 'var(--blue-deep)',
                     opacity: 1,
                     letterSpacing: '0.04em',
-                    marginBottom: '12px',
+                    marginBottom: '10px',
                     whiteSpace: 'nowrap'
                   }}>
                     {l.name}
@@ -558,8 +557,8 @@ export function TrustSection() {
                     src={l.logo}
                     alt={l.name}
                     style={{
-                      height: '64px',
-                      maxWidth: '180px',
+                      height: '48px',
+                      maxWidth: '150px',
                       objectFit: 'contain',
                       opacity: 0.9,
                       filter: 'grayscale(0.2) contrast(1.1)'
@@ -587,18 +586,18 @@ export function InsightsSection() {
   const headerRef = useReveal();
   const gridRef = useReveal();
   return (
-    <section id="insights" style={{ padding: '100px 0', background: 'rgba(240,244,248,0.3)' }}>
-      <div style={{ maxWidth: '1200px', margin: '0 auto', padding: '0 60px' }}>
+    <section id="insights" className="py-[80px] md:py-[100px]" style={{ background: 'rgba(240,244,248,0.3)' }}>
+      <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={headerRef} className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>Insights</span>
-          <h2 className="font-display" style={{ fontSize: 'clamp(34px,4vw,52px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
+          <h2 className="font-display" style={{ fontSize: 'clamp(30px,4vw,52px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '12px' }}>
             The Data Behind Human Potential
           </h2>
-          <p style={{ fontSize: '15px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
             Numbers that define why systems for recognising talent matter more than ever.
           </p>
         </div>
-        <div ref={gridRef} className="reveal" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '24px' }}>
+        <div ref={gridRef} className="reveal grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {INSIGHTS.map(i => (
             <div key={i.val} style={{
               background: 'white',
@@ -609,10 +608,10 @@ export function InsightsSection() {
               boxShadow: '0 10px 40px rgba(15,42,68,0.04)',
               transition: 'all 0.3s ease',
             }}>
-              <div className="font-display" style={{ fontSize: '48px', color: 'var(--blue-deep)', marginBottom: '16px', fontWeight: 500 }}>
+              <div className="font-display" style={{ fontSize: '40px', color: 'var(--blue-deep)', marginBottom: '12px', fontWeight: 500 }}>
                 {i.val}
               </div>
-              <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.6 }}>
+              <p style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.6 }}>
                 {i.desc}
               </p>
             </div>
@@ -683,14 +682,14 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" style={{ padding: '100px 0', background: 'rgba(240,244,248,0.15)' }}>
-      <div style={{ maxWidth: '900px', margin: '0 auto', padding: '0 40px' }}>
+    <section id="contact" className="py-[80px] md:py-[100px]" style={{ background: 'rgba(240,244,248,0.15)' }}>
+      <div className="max-w-[900px] mx-auto px-6 md:px-10">
         <div ref={ref} className="reveal" style={{ textAlign: 'center', marginBottom: '48px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>Get Started</span>
-          <h2 className="font-display" style={{ fontSize: 'clamp(32px,4vw,48px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '16px' }}>
+          <h2 className="font-display" style={{ fontSize: 'clamp(28px,4vw,48px)', fontWeight: 500, color: 'var(--blue-deep)', marginBottom: '16px' }}>
             Ready to Engineer Your Potential?
           </h2>
-          <p style={{ fontSize: '15px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ fontSize: '14px', color: 'var(--text-secondary)', fontWeight: 300, maxWidth: '600px', margin: '0 auto', lineHeight: 1.7 }}>
             Whether you're an institution looking to transform talent outcomes or an individual preparing for your next career move, Shakktii AI has a solution built for you.
           </p>
         </div>
@@ -698,10 +697,9 @@ export function ContactSection() {
         <div style={{
           background: 'white',
           borderRadius: '24px',
-          padding: '48px',
           boxShadow: '0 20px 80px rgba(15,42,68,0.06)',
           border: '1px solid var(--border)',
-        }}>
+        }} className="p-6 md:p-12">
           {status === 'success' ? (
             <div style={{ textAlign: 'center', padding: '40px 0' }}>
               <div style={{ width: '64px', height: '64px', borderRadius: '50%', background: 'rgba(40,200,64,0.1)', color: '#28C840', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '30px', margin: '0 auto 24px' }}>✓</div>
@@ -722,14 +720,15 @@ export function ContactSection() {
                     border: 'none',
                     cursor: 'pointer',
                     transition: 'all 0.2s',
-                    boxShadow: '0 4px 14px rgba(15, 42, 68, 0.2)'
+                    boxShadow: '0 4px 14px rgba(15, 42, 68, 0.2)',
+                    width: '100%',
                   }}>
                   Schedule Meeting on Calendly
                 </button>
               </div>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '24px' }}>
+            <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Full Name</label>
                 <input required name="name" type="text" placeholder="Your full name" style={{
@@ -787,7 +786,7 @@ export function ContactSection() {
                   )}
                 </div>
               </div>
-              <div style={{ gridColumn: 'span 2', marginTop: '12px' }}>
+              <div className="md:col-span-2 mt-3">
                 <button type="submit" disabled={status === 'loading'} style={{
                   width: '100%', background: '#0F2A44', color: 'white',
                   padding: '14px', borderRadius: '10px', fontSize: '15px', fontWeight: 600,
