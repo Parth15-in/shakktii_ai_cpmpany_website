@@ -636,7 +636,11 @@ export function ContactSection() {
   const ref = useReveal();
 
   const handleCalendlyPopup = () => {
-    window.open('https://calendly.com/shakktii-ai/screening-for-full-stack', '_blank', 'noopener,noreferrer');
+    if (typeof window !== 'undefined' && (window as any).Calendly) {
+      (window as any).Calendly.initPopupWidget({ url: 'https://calendly.com/shakktii-ai/screening-for-full-stack' });
+    } else {
+      window.open('https://calendly.com/shakktii-ai/screening-for-full-stack', '_blank', 'noopener,noreferrer');
+    }
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {

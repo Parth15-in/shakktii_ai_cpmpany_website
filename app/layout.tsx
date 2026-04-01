@@ -14,6 +14,7 @@ export const viewport: Viewport = {
 };
 
 import SmoothScroll from '@/components/layout/SmoothScroll';
+import Script from 'next/script';
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -24,9 +25,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap"
           rel="stylesheet"
         />
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
       </head>
       <body>
         <SmoothScroll>{children}</SmoothScroll>
+        <Script src="https://assets.calendly.com/assets/external/widget.js" strategy="lazyOnload" />
       </body>
     </html>
   );
