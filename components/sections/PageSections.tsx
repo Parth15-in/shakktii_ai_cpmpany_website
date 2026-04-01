@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, Fragment, useState } from 'react';
+import Link from 'next/link';
 
 // ─── Scroll reveal hook ────────────────────────────────────────────
 function useReveal() {
@@ -283,18 +284,23 @@ export function MockMingleSection() {
                     </div>
                   ))}
                 </div>
-                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' as const }}>
-                  <a href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
-                    background: 'var(--blue-deep)', color: 'white',
-                    padding: '12px 24px', borderRadius: '7px',
-                    fontSize: '13px', textDecoration: 'none',
+                <div className="animate-fadeup-delay-3" style={{
+                  display: 'flex',
+                  gap: '12px',
+                  flexWrap: 'wrap',
+                }}>
+                  <Link href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
+                    background: 'var(--blue-deep)',
+                    color: 'white',
+                    padding: '13px 24px',
+                    borderRadius: '7px',
+                    fontSize: '13px', fontWeight: 600, textDecoration: 'none',
                     letterSpacing: '0.01em',
-                    fontWeight: 600,
                     transition: 'all 0.2s',
                     boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
                     width: '100%',
                     textAlign: 'center',
-                  }} className="md:w-auto">Explore MockMingle</a>
+                  }} className="md:w-auto">Explore MockMingle</Link>
                 </div>
               </div>
 
@@ -503,7 +509,7 @@ export function SolutionsSection() {
             Intelligence infrastructure designed to guide, assess, and prepare for the future of work.
           </p>
         </div>
-        <div ref={gridRef} className="reveal grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div ref={gridRef} className="reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {SOLUTIONS.map(s => (
             <SolutionCard key={s.title} s={s} />
           ))}
@@ -628,32 +634,8 @@ export function ContactSection() {
   const [interest, setInterest] = useState('');
   const ref = useReveal();
 
-  // Load Calendly script once on mount
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-
-    const link = document.createElement('link');
-    link.href = 'https://assets.calendly.com/assets/external/widget.css';
-    link.rel = 'stylesheet';
-    document.head.appendChild(link);
-
-    return () => {
-      document.body.removeChild(script);
-      document.head.removeChild(link);
-    };
-  }, []);
-
   const handleCalendlyPopup = () => {
-    // @ts-ignore
-    if (window.Calendly) {
-      // @ts-ignore
-      window.Calendly.initPopupWidget({
-        url: 'https://calendly.com/shakktii-ai/screening-for-full-stack'
-      });
-    }
+    window.open('https://calendly.com/shakktii-ai/screening-for-full-stack', '_blank', 'noopener,noreferrer');
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -730,40 +712,42 @@ export function ContactSection() {
           ) : (
             <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Full Name</label>
-                <input required name="name" type="text" placeholder="Your full name" style={{
+                <label htmlFor="name-input" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Full Name</label>
+                <input required id="name-input" name="name" type="text" autoComplete="name" placeholder="Your full name" style={{
                   padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
                   border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)',
                   transition: 'background 0.2s'
-                }} />
+                }} aria-label="Full Name" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Email Address</label>
-                <input required name="email" type="email" placeholder="your@email.com" style={{
+                <label htmlFor="email-input" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Email Address</label>
+                <input required id="email-input" name="email" type="email" autoComplete="email" placeholder="your@email.com" style={{
                   padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
                   border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)'
-                }} />
+                }} aria-label="Email Address" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Organization / College</label>
-                <input name="org" type="text" placeholder="Your institution or company" style={{
+                <label htmlFor="org-input" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>Organization / College</label>
+                <input id="org-input" name="org" type="text" autoComplete="organization" placeholder="Your institution or company" style={{
                   padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
                   border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)'
-                }} />
+                }} aria-label="Organization or College" />
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-                <label style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>I'm interested in</label>
+                <label htmlFor="interest-select" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>I'm interested in</label>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                  <select
-                    name="interest"
-                    value={interest}
-                    onChange={(e) => setInterest(e.target.value)}
-                    style={{
-                      padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
-                      border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)',
-                      appearance: 'none', width: '100%'
-                    }}
-                  >
+                    <select
+                      id="interest-select"
+                      name="interest"
+                      value={interest}
+                      onChange={(e) => setInterest(e.target.value)}
+                      style={{
+                        padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
+                        border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)',
+                        appearance: 'none', width: '100%'
+                      }}
+                      aria-label="Interested in"
+                    >
                     <option value="">Select an option</option>
                     <option value="school">Solution for Schools</option>
                     <option value="college">Solution for Colleges</option>
@@ -794,7 +778,7 @@ export function ContactSection() {
                   opacity: status === 'loading' ? 0.7 : 1,
                   boxShadow: '0 4px 14px rgba(15, 42, 68, 0.25)'
                 }}>
-                  {status === 'loading' ? 'Sending...' : 'Partner With Us'}
+                  {status === 'loading' ? 'Sending...' : 'Schedule Consultation'}
                 </button>
                 {status === 'error' && (
                   <p style={{ color: '#FF5F57', fontSize: '12px', textAlign: 'center', marginTop: '12px' }}>Something went wrong. Please try again.</p>

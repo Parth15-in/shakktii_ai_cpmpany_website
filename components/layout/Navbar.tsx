@@ -15,10 +15,10 @@
    }, []);
  
    const navLinks = [
-     { name: 'About', href: '/#about' },
-     { name: 'Products', href: '/#mockmingle' },
+     { name: 'MockMingle', href: '/#mockmingle' },
      { name: 'Solutions', href: '/#solutions' },
-     { name: 'Team', href: '/#team' },
+     { name: 'Insights', href: '/#insights' },
+     { name: 'About', href: '/#about' },
      { name: 'Contact', href: '/#footer' },
    ];
  
@@ -121,7 +121,7 @@
                whiteSpace: 'nowrap',
              }}
            >
-             Partner With Us
+             Schedule Consultation
            </Link>
  
            {/* Hamburger Button */}
@@ -136,10 +136,10 @@
                color: 'var(--blue-deep)',
              }}
              className="md:hidden flex items-center"
-             aria-label="Toggle Menu"
+             aria-label={mobileMenuOpen ? "Close Menu" : "Toggle Menu"}
            >
              {mobileMenuOpen ? (
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                  <line x1="18" y1="6" x2="6" y2="18"></line>
                  <line x1="6" y1="6" x2="18" y2="18"></line>
                </svg>
@@ -154,92 +154,64 @@
          </div>
        </div>
  
-       {/* Mobile Menu Overlay */}
+       {/* Mobile Dropdown Menu */}
        {mobileMenuOpen && (
          <div 
            style={{
-             position: 'fixed',
-             top: 0,
-             left: 0,
-             right: 0,
-             bottom: 0,
-             background: 'rgba(240,244,248,1)',
-             backdropFilter: 'blur(20px)',
-             zIndex: 2000,
+             position: 'absolute',
+             top: '100%',
+             right: '20px',
+             width: '220px',
+             background: 'white',
+             borderRadius: '12px',
+             boxShadow: '0 10px 30px rgba(15,42,68,0.15)',
+             border: '1px solid var(--border)',
+             marginTop: '10px',
+             padding: '12px',
+             zIndex: 99999,
              display: 'flex',
              flexDirection: 'column',
-             padding: '16px 20px',
-             animation: 'fadeUp 0.3s ease-out both',
-             overflowY: 'auto'
+             gap: '4px',
            }}
            className="md:hidden"
          >
-           {/* Header in Overlay */}
-           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '40px' }}>
-             <div style={{ display: 'flex', alignItems: 'center', gap: '11px' }}>
-               <Image
-                 src="/shakktii-logo.png"
-                 alt="Shakktii AI Logo"
-                 width={40}
-                 height={40}
-                 quality={100}
-                 unoptimized
-                 style={{ objectFit: 'cover', borderRadius: '50%' }}
-               />
-               <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: '18px', fontWeight: 600, color: 'var(--blue-deep)' }}>
-                 Shakktii AI
-               </span>
-             </div>
-             <button 
+           {navLinks.map((item) => (
+             <Link
+               key={item.name}
+               href={item.href}
                onClick={() => setMobileMenuOpen(false)}
-               style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '8px', color: 'var(--blue-deep)' }}
+               style={{
+                 fontSize: '15px',
+                 fontWeight: 500,
+                 color: 'var(--blue-deep)',
+                 textDecoration: 'none',
+                 padding: '12px 16px',
+                 borderRadius: '8px',
+                 transition: 'background 0.2s',
+                 display: 'block',
+               }}
+               className="hover:bg-slate-50"
              >
-               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                 <line x1="18" y1="6" x2="6" y2="18"></line>
-                 <line x1="6" y1="6" x2="18" y2="18"></line>
-               </svg>
-             </button>
-           </div>
- 
-           {/* Links List */}
-           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-             {navLinks.map((item) => (
-               <Link
-                 key={item.name}
-                 href={item.href}
-                 onClick={() => setMobileMenuOpen(false)}
-                 style={{
-                   fontSize: '20px',
-                   fontWeight: 500,
-                   color: 'var(--blue-deep)',
-                   textDecoration: 'none',
-                   padding: '12px 0',
-                   borderBottom: '1px solid rgba(15,42,68,0.05)',
-                 }}
-               >
-                 {item.name}
-               </Link>
-             ))}
-           </div>
- 
-           {/* CTA at Bottom */}
-           <div style={{ marginTop: '32px' }}>
+               {item.name}
+             </Link>
+           ))}
+           <div style={{ padding: '8px 16px', marginTop: '4px', borderTop: '1px solid var(--border)' }}>
              <Link
                href="/#contact"
                onClick={() => setMobileMenuOpen(false)}
                style={{
                  background: 'var(--blue-deep)',
                  color: 'white',
-                 padding: '16px',
-                 borderRadius: '10px',
-                 fontSize: '16px',
+                 padding: '10px 16px',
+                 borderRadius: '6px',
+                 fontSize: '13px',
                  fontWeight: 600,
                  textDecoration: 'none',
                  display: 'block',
                  textAlign: 'center',
                }}
              >
-               Partner With Us
+               Schedule Consultation
              </Link>
            </div>
          </div>

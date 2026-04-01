@@ -102,35 +102,42 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
           Shakktii AI builds the infrastructure that helps individuals and institutions discover, develop and deploy human potential.
         </p>
 
-        <div className="animate-fadeup-delay-3 flex flex-col sm:flex-row gap-4 sm:gap-3 justify-center items-center px-4 sm:px-0">
+        <div className="animate-fadeup-delay-3" style={{
+          display: 'flex',
+          gap: '12px',
+          justifyContent: 'center',
+          flexWrap: 'wrap',
+        }}>
           <Link href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
             background: 'var(--blue-deep)',
             color: 'white',
-            padding: '16px 24px',
-            borderRadius: '10px',
-            fontSize: '14px', fontWeight: 600, textDecoration: 'none',
+            padding: '13px 24px',
+            borderRadius: '7px',
+            fontSize: '13px', fontWeight: 600, textDecoration: 'none',
             letterSpacing: '0.01em',
             transition: 'all 0.2s',
             boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
-            width: '100%',
-            maxWidth: '320px',
+            flex: '1 1 auto',
+            minWidth: '160px',
+            maxWidth: '240px',
             textAlign: 'center',
           }}>Explore Our Project
           </Link>
           <Link href="/#mockmingle" style={{
             background: 'rgba(255,255,255,0.5)',
             color: 'var(--blue-deep)',
-            padding: '16px 24px',
-            borderRadius: '10px',
-            fontSize: '14px',
+            padding: '13px 24px',
+            borderRadius: '7px',
+            fontSize: '13px',
             fontWeight: 600,
             textDecoration: 'none',
             letterSpacing: '0.01em',
             border: '1px solid var(--border)',
             backdropFilter: 'blur(10px)',
             transition: 'all 0.2s',
-            width: '100%',
-            maxWidth: '320px',
+            flex: '1 1 auto',
+            minWidth: '160px',
+            maxWidth: '240px',
             textAlign: 'center',
           }}>
             About MockMingle
