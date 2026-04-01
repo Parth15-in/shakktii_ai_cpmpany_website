@@ -1,34 +1,45 @@
 'use client';
 
-import { ReactNode, useEffect, useRef } from 'react';
+import { ReactNode, useEffect, useLayoutEffect, useRef } from 'react';
 import Lenis from 'lenis';
 
+/**
+ * SmoothScroll Component
+ * 
+ * Provides a minimal, production-ready smooth scrolling experience using Lenis.
+ * Optimized for Next.js App Router.
+ */
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
-    // Initialize Lenis
+    // Initialize Lenis with optimized settings
     const lenis = new Lenis({
-      duration: 1.2,
+      lerp: 0.07, 
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      orientation: 'vertical',
-      smoothWheel: true,
-      wheelMultiplier: 1.1,
-      lerp: 0.1,
+      infinite: false,
     });
 
     lenisRef.current = lenis;
+    document.documentElement.classList.add('lenis');
 
-    // Use requestAnimationFrame to update Lenis
+    // requestAnimationFrame loop
+    let rafId: number;
+    
     function raf(time: number) {
       lenis.raf(time);
-      requestAnimationFrame(raf);
+      rafId = requestAnimationFrame(raf);
     }
 
-    requestAnimationFrame(raf);
+    rafId = requestAnimationFrame(raf);
 
+    // Cleanup to prevent memory leaks and double RAF loops
     return () => {
       lenis.destroy();
+      cancelAnimationFrame(rafId);
+      document.documentElement.classList.remove('lenis');
     };
   }, []);
 

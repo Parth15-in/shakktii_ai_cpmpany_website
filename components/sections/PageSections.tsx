@@ -426,10 +426,11 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
   return (
     <div
       id={cardId}
-      onClick={() => setIsFlipped(!isFlipped)}
+      onMouseEnter={() => setIsFlipped(true)}
+      onMouseLeave={() => setIsFlipped(false)}
       style={{
         perspective: '1000px',
-        cursor: 'pointer',
+        cursor: 'default',
         scrollMarginTop: '120px',
         height: '200px',
       }}
