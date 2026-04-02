@@ -19,47 +19,193 @@ function useReveal() {
   return ref;
 }
 
-// ─── Problem Statement ────────────────────────────────────────────
+// ─── About Section (Problem & Vision) ──────────────────────────────
+const IMPACT_SEGMENTS = [
+  {
+    title: 'Schools',
+    desc: 'At the school level, we map cognitive intelligence, memory retention along with aptitude and temperament early, so learning could be easier personally and career guidance begins with self-awareness, not guesswork.'
+  },
+  {
+    title: 'Colleges',
+    desc: 'At the college level, MockMingle delivers AI-powered simulations like mock interviews, situational tests, psychometric diagnostics, and real-time skill gap analysis that turn placement cells into launchpads.'
+  },
+  {
+    title: 'Enterprises',
+    desc: 'For enterprises, we assess workforce readiness, deploy precision upskilling, and match talent to roles with AI-driven hiring intelligence.'
+  },
+  {
+    title: 'Workforce',
+    desc: 'For blue-collar workers, we bring vocational skill mapping, vernacular AI interfaces, and behavioural profiling to India\'s 300-million-strong workforce, because cognitive potential doesn\'t require a degree.'
+  },
+];
+
 export function ProblemSection() {
-  const ref = useReveal();
+  const hHookRef = useReveal();
+  const narrativeRef = useReveal();
+  const gridRef = useReveal();
+
   return (
-    <section id="about" className="py-[80px] md:py-[120px]">
+    <section id="about" className="py-[80px] md:py-[110px] relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
-        <div ref={ref} className="reveal" style={{
-          background: 'rgba(255,255,255,0.55)',
-          backdropFilter: 'blur(24px)',
-          WebkitBackdropFilter: 'blur(24px)',
-          border: '1px solid rgba(255,255,255,0.7)',
-          borderRadius: '20px',
-          padding: '60px 40px',
-          boxShadow: '0 8px 60px rgba(15,42,68,0.06)',
-          textAlign: 'center',
-        }}>
+        {/* Main Hook & Context */}
+        <div ref={hHookRef} className="reveal text-center mb-[80px]">
           <span style={{
             fontSize: '11px', fontWeight: 600,
             letterSpacing: '0.14em', textTransform: 'uppercase' as const,
             color: 'var(--gold)', marginBottom: '24px', display: 'block',
-          }}>OUR BELIEF</span>
+          }}>THE SHAKKTII MISSION</span>
           <div style={{ width: '48px', height: '2px', background: 'linear-gradient(90deg,var(--gold),transparent)', margin: '0 auto 24px' }} />
           <h2 className="font-display" style={{
-            fontSize: 'clamp(32px,4.5vw,56px)',
+            fontSize: 'clamp(32px,5.5vw,72px)',
             fontWeight: 500,
             color: 'var(--blue-deep)',
-            lineHeight: 1.2,
-            marginBottom: '20px',
-            letterSpacing: '-0.01em',
+            lineHeight: 1.1,
+            marginBottom: '32px',
+            letterSpacing: '-0.02em',
           }}>
             The world does not lack talent.<br />It lacks systems that recognize it.
           </h2>
-          <p className="font-display" style={{
-            fontSize: '18px',
-            fontWeight: 400,
-            color: 'var(--blue-soft)',
-            fontStyle: 'italic',
-            letterSpacing: '0.01em',
+          <div className="max-w-[800px] mx-auto">
+            <div style={{ marginBottom: '40px' }}>
+              <span className="font-display" style={{
+                fontSize: 'clamp(32px, 4vw, 56px)',
+                lineHeight: 1,
+                color: 'var(--blue-deep)',
+                fontWeight: 600,
+                display: 'block',
+                marginBottom: '10px'
+              }}>42.6%</span>
+              <p className="font-display" style={{
+                fontSize: '14px',
+                fontWeight: 500,
+                color: 'var(--blue-soft)',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase'
+              }}>
+                of Indian graduates are considered employable
+              </p>
+            </div>
+            <p style={{
+              fontSize: '18px',
+              color: 'var(--text-secondary)',
+              lineHeight: 1.7,
+              fontWeight: 300
+            }}>
+              This isn't a lack of ability. It's a lack of mapping. No system has diagnosed their real strengths or built them a personalized path to career readiness.
+            </p>
+          </div>
+        </div>
+
+        {/* Narrative & Philosophy */}
+        <div ref={narrativeRef} className="reveal mb-[120px] text-center" style={{
+          background: 'rgba(255,255,255,0.45)',
+          backdropFilter: 'blur(32px)',
+          border: '1px solid rgba(255,255,255,0.7)',
+          borderRadius: '40px',
+          padding: '100px 60px',
+          boxShadow: '0 24px 80px rgba(15,42,68,0.08)',
+          maxWidth: '1100px',
+          margin: '0 auto 120px',
+          position: 'relative',
+          overflow: 'hidden'
+        }}>
+          {/* Subtle architectural lines */}
+          <div style={{ position: 'absolute', top: 0, left: '50%', width: '1px', height: '100%', background: 'linear-gradient(180deg, transparent, rgba(15,42,68,0.05), transparent)', pointerEvents: 'none' }} />
+
+          <h3 className="font-display" style={{
+            fontSize: 'clamp(28px, 4vw, 52px)',
+            color: 'var(--blue-deep)',
+            marginBottom: '40px',
+            fontWeight: 500,
+            letterSpacing: '-0.03em'
           }}>
-            Shakktii AI is building those systems.
+            AI Cognitive Intelligence.
+          </h3>
+          <p className="font-display" style={{
+            fontSize: 'clamp(20px, 1.8vw, 28px)',
+            color: 'var(--text-secondary)',
+            lineHeight: 1.5,
+            marginBottom: '60px',
+            fontWeight: 300,
+            maxWidth: '900px',
+            margin: '0 auto 60px'
+          }}>
+            The future of career readiness isn't about more content. It's about deeper intelligence an AI that understands how a person thinks, adapts, and performs before prescribing their journey.
           </p>
+          <div style={{
+            padding: '40px',
+            background: 'rgba(255,255,255,0.6)',
+            borderRadius: '24px',
+            boxShadow: '0 4px 20px rgba(15,42,68,0.03)',
+            display: 'inline-block',
+            maxWidth: '800px',
+            border: '1px solid rgba(255,255,255,0.9)'
+          }}>
+            <p style={{
+              fontSize: 'clamp(16px, 1.3vw, 20px)',
+              color: 'var(--blue-deep)',
+              fontWeight: 400,
+              fontStyle: 'italic',
+              margin: 0,
+              lineHeight: 1.6
+            }}>
+              "Shakktii AI is building that future."
+            </p>
+          </div>
+        </div>
+
+        {/* Impact Segments - Redesigned for a more "Architectural" feel */}
+        <div ref={gridRef} className="reveal mb-[60px]">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-0" style={{ border: '1px solid var(--border)', borderRadius: '32px', overflow: 'hidden', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(20px)' }}>
+            {IMPACT_SEGMENTS.map((seg, i) => (
+              <div key={seg.title} style={{
+                padding: '48px 32px',
+                borderRight: i < IMPACT_SEGMENTS.length - 1 ? '1px solid var(--border)' : 'none',
+                borderBottom: 'none',
+                transition: 'all 0.4s ease',
+              }} className="hover:bg-white transition-all duration-500 group">
+                <div style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <span style={{ fontSize: '10px', fontWeight: 600, color: 'var(--gold)', letterSpacing: '0.2em' }}>0{i + 1}</span>
+                  <div style={{ flex: 1, height: '1px', background: 'var(--gold)', opacity: 0.3 }} />
+                </div>
+                <h4 className="font-display" style={{ fontSize: '22px', color: 'var(--blue-deep)', marginBottom: '20px', fontWeight: 500 }}>{seg.title}</h4>
+                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>{seg.desc}</p>
+              </div>
+            ))}
+          </div>
+          {/* Mobile border adjustments helper */}
+          <style jsx>{`
+            @media (max-width: 1024px) {
+              .grid > div {
+                border-right: none !important;
+                border-bottom: 1px solid var(--border) !important;
+              }
+              .grid > div:last-child {
+                border-bottom: none !important;
+              }
+            }
+          `}</style>
+        </div>
+
+        {/* Conclusion / Banner */}
+        <div className="reveal text-center" style={{ borderTop: '1px solid var(--border)', paddingTop: '40px' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '32px', marginBottom: '40px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--gold)' }} />
+              <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-mid)' }}>Aligned with NEP 2020</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--gold)' }} />
+              <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-mid)' }}>Powered by AI</span>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ width: '8px', height: '8px', borderRadius: '50%', background: 'var(--gold)' }} />
+              <span style={{ fontSize: '13px', fontWeight: 600, color: 'var(--text-mid)' }}>Built for Every Indian</span>
+            </div>
+          </div>
+          <h2 className="font-display animate-fadeup" style={{ fontSize: '32px', color: 'var(--blue-deep)', fontWeight: 500, letterSpacing: '0.02em' }}>
+            Let's Test. Let's Train. Let's Transform.
+          </h2>
         </div>
       </div>
     </section>
@@ -68,9 +214,9 @@ export function ProblemSection() {
 
 // ─── Lifecycle ───────────────────────────────────────────────────
 const STEPS = [
-  { label: 'Discover', icon: '◎', desc: 'Identifying untapped potential and hidden talent patterns across ecosystem.' },
+  { label: 'Discover', icon: '◎', desc: 'Identifying untapped potential and hidden talent patterns across the ecosystem.' },
   { label: 'Diagnose', icon: '⬡', desc: 'Applying deep-tech diagnostics to map cognitive and behavioral architecture.' },
-  { label: 'Develop', icon: '⟡', desc: 'Precision engineering of skills and mindsets for future-ready performance.' },
+  { label: 'Develop', icon: '⟡', desc: 'Shaping skills and mindsets for future-ready performance.' },
   { label: 'Demonstrate', icon: '◈', desc: 'Creating high-fidelity enviornments for talent to prove its readiness ' },
   { label: 'Deploy', icon: '↗', desc: 'Strategic integration of prepared talent into high-impact roles.' },
 ];
@@ -81,7 +227,7 @@ export function LifecycleSection() {
   const trackRef = useReveal();
 
   return (
-    <section id="lifecycle" className="py-[80px] md:py-[100px] overflow-hidden">
+    <section id="lifecycle" className="pt-[40px] pb-[80px] md:pt-[50px] md:pb-[100px] overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={headRef} className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>The Architecture</span>
@@ -222,7 +368,7 @@ export function LifecycleSection() {
 const FEATURES = [
   { icon: '⬡', label: 'AI Mock Interviews' },
   { icon: '◎', label: 'Behavioural Diagnostics' },
-  { icon: '⟡', label: 'Skill Readiness Intelligence' },
+  { icon: '⟡', label: 'Skill Cognitive Intelligence' },
   { icon: '↗', label: 'Career Pathway Guidance' },
 ];
 
@@ -239,7 +385,7 @@ export function MockMingleSection() {
   return (
     <section id="mockmingle" className="py-[80px] md:py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
-          <div ref={ref} className="reveal" style={{
+        <div ref={ref} className="reveal" style={{
           background: 'rgba(255,255,255,0.55)',
           backdropFilter: 'blur(24px)',
           border: '1px solid rgba(255,255,255,0.7)',
@@ -256,7 +402,7 @@ export function MockMingleSection() {
                   MockMingle
                 </h2>
                 <p style={{ fontSize: '16px', color: 'var(--text-secondary)', fontWeight: 300, marginBottom: '12px', lineHeight: 1.6 }}>
-                  The Operating System for Career Readiness
+                  The Operating System for future career
                 </p>
                 <p style={{ fontSize: '13px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.7, marginBottom: '32px' }}>
                   A structured intelligence architecture designed to unlock human capability at scale.
@@ -583,15 +729,16 @@ export function TrustSection() {
 
 // ─── Insights ────────────────────────────────────────────────────
 const INSIGHTS = [
-  { val: '73%', desc: 'of recruiters say traditional resumes miss true candidate potential' },
-  { val: '4.2x', desc: 'improvement in placement rates with structured behavioural assessments' },
-  { val: '89%', desc: 'of candidates feel more confident after AI-powered mock interview preparation' },
+  { val: '42.6%', desc: 'of graduates are job-ready in today’s market' },
+  { val: '82%', desc: 'of employers struggle to identify the right talent' },
+  { val: '92%', desc: 'of students lack structured skill development exposure' },
   { val: '500+', desc: 'institutions and individuals currently transforming their career outcomes' },
 ];
 
 export function InsightsSection() {
   const headerRef = useReveal();
   const gridRef = useReveal();
+  const statementRef = useReveal();
   return (
     <section id="insights" className="py-[80px] md:py-[100px]" style={{ background: 'rgba(240,244,248,0.3)' }}>
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
@@ -623,6 +770,20 @@ export function InsightsSection() {
               </p>
             </div>
           ))}
+        </div>
+
+        <div ref={statementRef} className="reveal" style={{ marginTop: '56px', textAlign: 'center' }}>
+          <p style={{
+            fontSize: 'clamp(16px, 1.8vw, 22px)',
+            color: 'var(--blue-deep)',
+            fontWeight: 500,
+            lineHeight: 1.5,
+            maxWidth: '900px',
+            margin: '0 auto',
+            letterSpacing: '0.01em'
+          }}>
+            "India doesn't have a talent shortage. It has a recognition problem."
+          </p>
         </div>
       </div>
     </section>
@@ -741,18 +902,18 @@ export function ContactSection() {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
                 <label htmlFor="interest-select" style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', opacity: 0.8 }}>I'm interested in</label>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-                    <select
-                      id="interest-select"
-                      name="interest"
-                      value={interest}
-                      onChange={(e) => setInterest(e.target.value)}
-                      style={{
-                        padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
-                        border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)',
-                        appearance: 'none', width: '100%'
-                      }}
-                      aria-label="Interested in"
-                    >
+                  <select
+                    id="interest-select"
+                    name="interest"
+                    value={interest}
+                    onChange={(e) => setInterest(e.target.value)}
+                    style={{
+                      padding: '12px 16px', borderRadius: '10px', background: 'rgba(240,244,248,0.5)',
+                      border: '1px solid var(--border)', outline: 'none', fontSize: '14px', color: 'var(--blue-deep)',
+                      appearance: 'none', width: '100%'
+                    }}
+                    aria-label="Interested in"
+                  >
                     <option value="">Select an option</option>
                     <option value="school">Solution for Schools</option>
                     <option value="college">Solution for Colleges</option>
