@@ -15,6 +15,7 @@
    }, []);
  
    const navLinks = [
+     { name: 'Ecosystem', href: '/ecosystem' },
      { name: 'MockMingle', href: '/#mockmingle' },
      { name: 'Solutions', href: '/#solutions' },
      { name: 'Insights', href: '/#insights' },

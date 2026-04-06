@@ -20,24 +20,7 @@ function useReveal() {
 }
 
 // ─── About Section (Problem & Vision) ──────────────────────────────
-const IMPACT_SEGMENTS = [
-  {
-    title: 'Schools',
-    desc: 'At the school level, we map cognitive intelligence, memory retention along with aptitude and temperament early, so learning could be easier personally and career guidance begins with self-awareness, not guesswork.'
-  },
-  {
-    title: 'Colleges',
-    desc: 'At the college level, MockMingle delivers AI-powered simulations like mock interviews, situational tests, psychometric diagnostics, and real-time skill gap analysis that turn placement cells into launchpads.'
-  },
-  {
-    title: 'Enterprises',
-    desc: 'For enterprises, we assess workforce readiness, deploy precision upskilling, and match talent to roles with AI-driven hiring intelligence.'
-  },
-  {
-    title: 'Workforce',
-    desc: 'For blue-collar workers, we bring vocational skill mapping, vernacular AI interfaces, and behavioural profiling to India\'s 300-million-strong workforce, because cognitive potential doesn\'t require a degree.'
-  },
-];
+// Impact segments moved to Solutions section flip cards
 
 export function ProblemSection() {
   const hHookRef = useReveal();
@@ -152,39 +135,6 @@ export function ProblemSection() {
               "Shakktii AI is building that future."
             </p>
           </div>
-        </div>
-
-        {/* Impact Segments - Redesigned for a more "Architectural" feel */}
-        <div ref={gridRef} className="reveal mb-[60px]">
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-0" style={{ border: '1px solid var(--border)', borderRadius: '32px', overflow: 'hidden', background: 'rgba(255,255,255,0.3)', backdropFilter: 'blur(20px)' }}>
-            {IMPACT_SEGMENTS.map((seg, i) => (
-              <div key={seg.title} style={{
-                padding: '48px 32px',
-                borderRight: i < IMPACT_SEGMENTS.length - 1 ? '1px solid var(--border)' : 'none',
-                borderBottom: 'none',
-                transition: 'all 0.4s ease',
-              }} className="hover:bg-white transition-all duration-500 group">
-                <div style={{ marginBottom: '32px', display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <span style={{ fontSize: '10px', fontWeight: 600, color: 'var(--gold)', letterSpacing: '0.2em' }}>0{i + 1}</span>
-                  <div style={{ flex: 1, height: '1px', background: 'var(--gold)', opacity: 0.3 }} />
-                </div>
-                <h4 className="font-display" style={{ fontSize: '22px', color: 'var(--blue-deep)', marginBottom: '20px', fontWeight: 500 }}>{seg.title}</h4>
-                <p style={{ fontSize: '14px', color: 'var(--text-secondary)', lineHeight: 1.8, fontWeight: 300, margin: 0 }}>{seg.desc}</p>
-              </div>
-            ))}
-          </div>
-          {/* Mobile border adjustments helper */}
-          <style jsx>{`
-            @media (max-width: 1024px) {
-              .grid > div {
-                border-right: none !important;
-                border-bottom: 1px solid var(--border) !important;
-              }
-              .grid > div:last-child {
-                border-bottom: none !important;
-              }
-            }
-          `}</style>
         </div>
 
         {/* Conclusion / Banner */}
@@ -535,14 +485,69 @@ export function MockMingleSection() {
 
 // ─── Solutions ───────────────────────────────────────────────────
 const SOLUTIONS = [
-  { icon: '/icons/schools.png', title: 'Schools', desc: 'Career awareness and early diagnostics for students', backText: 'Help students discover career paths early through AI-driven assessments and skill insights. Enable better academic and future decisions.' },
-  { icon: '/icons/colleges.png', title: 'Colleges', desc: 'Placement intelligence and skill gap insights', backText: 'Improve placement outcomes with skill gap analysis and mock interview insights. Prepare students for real-world careers.' },
-  { icon: '/icons/professionals.png', title: 'Professionals', desc: 'Career guidance and readiness scoring', backText: 'Get personalized career guidance, skill benchmarking, and readiness scores. Grow faster with data-driven insights.' },
-  { icon: '/icons/companies.png', title: 'Companies', desc: 'Hiring intelligence and talent mapping', backText: 'Hire smarter using AI-based candidate screening and talent mapping. Improve hiring quality and efficiency.' },
-  { icon: '/icons/workforce.png', title: 'Workforce', desc: 'Behavioural diagnostics at scale', backText: 'Analyze workforce behavior and performance at scale. Drive productivity with actionable insights.' },
+  { 
+    icon: '/icons/schools.png', 
+    title: 'Schools', 
+    desc: 'Career awareness and early diagnostics for students', 
+    backText: 'At the school level, we map cognitive intelligence, memory retention along with aptitude and temperament early, so learning could be easier personally and career guidance begins with self-awareness, not guesswork.',
+    fullDetails: [
+      "8-Factor Cognitive Intelligence Mapping",
+      "Aptitude & Temperament Diagnostics",
+      "Personalized Career Discovery Pathways",
+      "Parental Guidance Intelligence"
+    ]
+  },
+  { 
+    icon: '/icons/colleges.png', 
+    title: 'Colleges', 
+    desc: 'Placement intelligence and skill gap insights', 
+    backText: 'At the college level, MockMingle delivers AI-powered simulations like mock interviews, situational tests, psychometric diagnostics, and real-time skill gap analysis that turn placement cells into launchpads.',
+    fullDetails: [
+      "MockMingle AI Interview Simulations",
+      "Real-time Skill Gap Intelligence",
+      "Industry-Readiness Scoring (IRS)",
+      "Automated Placement Cell Dashboard"
+    ]
+  },
+  { 
+    icon: '/icons/professionals.png', 
+    title: 'Professionals', 
+    desc: 'Career guidance and readiness scoring', 
+    backText: 'Continuous benchmarking and diagnostic intelligence for those looking to pivot, grow, or measure their readiness for the top 1% of roles.',
+    fullDetails: [
+      "Peer-to-Peer Industry Benchmarking",
+      "Customized Upskilling Roadmap",
+      "Soft-Skill Cognitive Analysis",
+      "High-Fidelity Behavioral Profiling"
+    ]
+  },
+  { 
+    icon: '/icons/companies.png', 
+    title: 'Companies', 
+    desc: 'Hiring intelligence and talent mapping', 
+    backText: 'For enterprises, we assess workforce readiness, deploy precision upskilling, and match talent to roles with AI-driven hiring intelligence.',
+    fullDetails: [
+      "Workforce Readiness Assessment",
+      "Precision Upskilling Deployment",
+      "AI-Driven Hiring Intelligence",
+      "Talent Matching Excellence"
+    ]
+  },
+  { 
+    icon: '/icons/workforce.png', 
+    title: 'Workforce', 
+    desc: 'Behavioural diagnostics at scale', 
+    backText: 'For blue-collar workers, we bring vocational skill mapping, vernacular AI interfaces, and behavioural profiling to India\'s 300-million-strong workforce, because cognitive potential doesn\'t require a degree.',
+    fullDetails: [
+      "Vernacular AI Skill Diagnostics",
+      "Behavioral Readiness Mapping",
+      "Vocational Skill Certification Intelligence",
+      "Direct-to-Role Talent Deployment"
+    ]
+  },
 ];
 
-function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
+function SolutionCard({ s, onReadMore }: { s: typeof SOLUTIONS[0], onReadMore: () => void }) {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardId = `solutions-${s.title.toLowerCase()}`;
   const lastHashRef = useRef(typeof window !== 'undefined' ? window.location.hash : '');
@@ -569,6 +574,10 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
     return () => clearInterval(interval);
   }, [cardId]);
 
+  // Truncate logic: if text is long, we show a "Read More" button
+  const isLongText = s.backText.length > 100;
+  const displayText = isLongText ? s.backText.substring(0, 95) + '...' : s.backText;
+
   return (
     <div
       id={cardId}
@@ -578,7 +587,7 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
         perspective: '1000px',
         cursor: 'default',
         scrollMarginTop: '120px',
-        height: '200px',
+        height: '240px', // Increased height to accommodate button
       }}
     >
       <div style={{
@@ -597,7 +606,7 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           background: 'rgba(255,255,255,0.6)',
           border: '1px solid rgba(255,255,255,0.8)',
           borderRadius: '14px',
-          padding: '20px 16px',
+          padding: '24px 20px',
           backdropFilter: 'blur(16px)',
           textAlign: 'center',
           boxShadow: '0 4px 20px rgba(15,42,68,0.04)',
@@ -607,14 +616,14 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           justifyContent: 'center',
         }}>
           <div style={{
-            width: '40px', height: '40px',
-            marginBottom: '12px',
+            width: '48px', height: '48px',
+            marginBottom: '16px',
             display: 'flex', alignItems: 'center', justifyContent: 'center'
           }}>
             <img src={s.icon} alt={s.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
           </div>
-          <h3 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '6px' }}>{s.title}</h3>
-          <p style={{ fontSize: '11px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.4 }}>{s.desc}</p>
+          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '8px' }}>{s.title}</h3>
+          <p style={{ fontSize: '12px', color: 'var(--text-secondary)', fontWeight: 300, lineHeight: 1.5 }}>{s.desc}</p>
         </div>
 
         {/* Back */}
@@ -624,7 +633,7 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           background: 'var(--blue-deep)',
           border: '1px solid rgba(255,255,255,0.8)',
           borderRadius: '14px',
-          padding: '20px 16px',
+          padding: '24px 20px',
           textAlign: 'center',
           boxShadow: '0 8px 30px rgba(15,42,68,0.1)',
           display: 'flex',
@@ -633,17 +642,144 @@ function SolutionCard({ s }: { s: typeof SOLUTIONS[0] }) {
           justifyContent: 'center',
           transform: 'rotateY(180deg)',
         }}>
-          <h3 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--gold)', marginBottom: '10px' }}>{s.title}</h3>
-          <p style={{ fontSize: '11px', color: 'rgba(255,255,255,0.9)', fontWeight: 300, lineHeight: 1.5 }}>{s.backText}</p>
+          <h3 style={{ fontSize: '15px', fontWeight: 600, color: 'var(--gold)', marginBottom: '12px' }}>{s.title}</h3>
+          <p style={{ fontSize: '12px', color: 'rgba(255,255,255,0.9)', fontWeight: 300, lineHeight: 1.6, marginBottom: '16px' }}>
+            {displayText}
+          </p>
+          {isLongText && (
+            <button 
+              onClick={(e) => {
+                e.stopPropagation();
+                onReadMore();
+              }}
+              style={{
+                background: 'rgba(255,255,255,0.1)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                color: 'white',
+                padding: '6px 16px',
+                borderRadius: '100px',
+                fontSize: '11px',
+                fontWeight: 500,
+                cursor: 'pointer',
+                transition: 'all 0.2s'
+              }}
+              className="hover:bg-white hover:text-blue-deep"
+            >
+              Read More
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
+function SolutionModal({ s, onClose }: { s: typeof SOLUTIONS[0], onClose: () => void }) {
+  return (
+    <div style={{
+      position: 'fixed',
+      top: 0, left: 0, right: 0, bottom: 0,
+      background: 'rgba(15, 42, 68, 0.4)',
+      backdropFilter: 'blur(8px)',
+      zIndex: 9999,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: '20px'
+    }} onClick={onClose}>
+      <div style={{
+        background: 'white',
+        borderRadius: '24px',
+        width: '100%',
+        maxWidth: '600px',
+        maxHeight: '90vh',
+        display: 'flex',
+        flexDirection: 'column',
+        boxShadow: '0 32px 100px rgba(15,42,68,0.2)',
+        position: 'relative',
+        animation: 'fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+        overflow: 'hidden'
+      }} onClick={e => e.stopPropagation()}>
+        
+        {/* Header with Background Pattern */}
+        <div style={{
+          padding: '40px 40px 32px',
+          background: 'linear-gradient(135deg, rgba(240,244,248,0.5) 0%, rgba(255,255,255,1) 100%)',
+          borderBottom: '1px solid var(--border)',
+          position: 'relative'
+        }}>
+          <button 
+            onClick={onClose}
+            style={{
+              position: 'absolute', top: '24px', right: '24px',
+              background: 'white', border: '1px solid var(--border)', padding: '8px',
+              cursor: 'pointer', color: 'var(--text-secondary)',
+              fontSize: '18px', borderRadius: '50%', width: '36px', height: '36px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 2px 10px rgba(0,0,0,0.05)',
+              zIndex: 10
+            }}
+          >✕</button>
+
+          <div style={{ display: 'flex', alignItems: 'center', gap: '20px', marginBottom: '16px' }}>
+            <div style={{
+              width: '64px', height: '64px',
+              background: 'white',
+              borderRadius: '16px',
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              boxShadow: '0 8px 30px rgba(15,42,68,0.08)',
+              border: '1px solid var(--border)'
+            }}>
+              <img src={s.icon} alt={s.title} style={{ width: '60%', height: '60%', objectFit: 'contain' }} />
+            </div>
+            <div>
+              <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--gold)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>Solution</span>
+              <h2 className="font-display" style={{ margin: 0, fontSize: '32px', fontWeight: 500, color: 'var(--blue-deep)' }}>{s.title}</h2>
+            </div>
+          </div>
+          <p style={{ fontSize: '16px', color: 'var(--text-secondary)', lineHeight: 1.6, fontWeight: 300, margin: 0 }}>{s.desc}</p>
+        </div>
+
+        {/* Content Body */}
+        <div style={{
+          padding: '32px 40px 40px',
+          overflowY: 'auto',
+          WebkitOverflowScrolling: 'touch'
+        }}>
+          <div>
+            <h4 style={{ fontSize: '13px', fontWeight: 600, color: 'var(--blue-deep)', marginBottom: '12px', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Overview</h4>
+            <p style={{ fontSize: '15px', color: 'var(--text-secondary)', lineHeight: 1.8, fontWeight: 400 }}>{s.backText}</p>
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div style={{ padding: '24px 40px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'flex-end', background: 'rgba(240,244,248,0.2)' }}>
+          <button 
+            onClick={onClose}
+            style={{
+              background: 'var(--blue-deep)', color: 'white',
+              padding: '12px 32px', borderRadius: '12px',
+              border: 'none', fontSize: '14px', fontWeight: 600,
+              cursor: 'pointer', boxShadow: '0 4px 15px rgba(15,42,68,0.1)'
+            }}
+          >Close Details</button>
+        </div>
+      </div>
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+      `}</style>
+    </div>
+  );
+}
+
 export function SolutionsSection() {
+  const [selectedSolution, setSelectedSolution] = useState<typeof SOLUTIONS[0] | null>(null);
   const headerRef = useReveal();
   const gridRef = useReveal();
+
   return (
     <section id="solutions" className="py-[80px] md:py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
@@ -658,10 +794,14 @@ export function SolutionsSection() {
         </div>
         <div ref={gridRef} className="reveal grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {SOLUTIONS.map(s => (
-            <SolutionCard key={s.title} s={s} />
+            <SolutionCard key={s.title} s={s} onReadMore={() => setSelectedSolution(s)} />
           ))}
         </div>
       </div>
+
+      {selectedSolution && (
+        <SolutionModal s={selectedSolution} onClose={() => setSelectedSolution(null)} />
+      )}
     </section>
   );
 }
