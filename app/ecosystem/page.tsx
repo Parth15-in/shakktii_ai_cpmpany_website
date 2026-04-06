@@ -9,6 +9,7 @@ import {
   SchoolsSection,
   CollegesSection,
   ProfessionalsSection,
+  EnterprisesSection,
   WorkforceSection,
   AnalyticsSection
 } from '@/components/sections/EcosystemSections';
@@ -27,6 +28,7 @@ export default function EcosystemPage() {
           <SchoolsSection />
           <CollegesSection />
           <ProfessionalsSection />
+          <EnterprisesSection />
           <WorkforceSection />
           <AnalyticsSection />
           <ContactSection />

@@ -104,40 +104,19 @@ export default function HeroSection({ showLogo, onClose }: { showLogo: boolean; 
 
         <div className="animate-fadeup-delay-3" style={{
           display: 'flex',
-          gap: '12px',
           justifyContent: 'center',
-          flexWrap: 'wrap',
         }}>
-          <Link href="https://www.mockmingle.in/" target="_blank" rel="noopener noreferrer" style={{
+          <Link href="/#mockmingle" style={{
             background: 'var(--blue-deep)',
             color: 'white',
-            padding: '13px 24px',
-            borderRadius: '7px',
-            fontSize: '13px', fontWeight: 600, textDecoration: 'none',
-            letterSpacing: '0.01em',
-            transition: 'all 0.2s',
-            boxShadow: '0 4px 14px rgba(15, 42, 68, 0.1)',
-            flex: '1 1 auto',
-            minWidth: '160px',
-            maxWidth: '240px',
-            textAlign: 'center',
-          }}>Explore Our Project
-          </Link>
-          <Link href="/#mockmingle" style={{
-            background: 'rgba(255,255,255,0.5)',
-            color: 'var(--blue-deep)',
-            padding: '13px 24px',
-            borderRadius: '7px',
-            fontSize: '13px',
+            padding: '13px 32px',
+            borderRadius: '10px',
+            fontSize: '14px',
             fontWeight: 600,
             textDecoration: 'none',
             letterSpacing: '0.01em',
-            border: '1px solid var(--border)',
-            backdropFilter: 'blur(10px)',
             transition: 'all 0.2s',
-            flex: '1 1 auto',
-            minWidth: '160px',
-            maxWidth: '240px',
+            boxShadow: '0 4px 14px rgba(15, 42, 68, 0.15)',
             textAlign: 'center',
           }}>
             About MockMingle

@@ -28,7 +28,7 @@ export function ProblemSection() {
   const gridRef = useReveal();
 
   return (
-    <section id="about" className="py-[80px] md:py-[110px] relative overflow-hidden">
+    <section id="about" className="pt-[80px] md:pt-[110px] pb-[60px] md:pb-[100px] relative overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         {/* Main Hook & Context */}
         <div ref={hHookRef} className="reveal text-center mb-[80px]">
@@ -80,15 +80,15 @@ export function ProblemSection() {
         </div>
 
         {/* Narrative & Philosophy */}
-        <div ref={narrativeRef} className="reveal mb-[120px] text-center" style={{
+        <div ref={narrativeRef} className="reveal mb-[80px] text-center" style={{
           background: 'rgba(255,255,255,0.45)',
           backdropFilter: 'blur(32px)',
           border: '1px solid rgba(255,255,255,0.7)',
-          borderRadius: '40px',
-          padding: '100px 60px',
+          borderRadius: '32px',
+          padding: '64px 48px',
           boxShadow: '0 24px 80px rgba(15,42,68,0.08)',
-          maxWidth: '1100px',
-          margin: '0 auto 120px',
+          maxWidth: '860px',
+          margin: '0 auto 80px',
           position: 'relative',
           overflow: 'hidden'
         }}>
@@ -177,7 +177,7 @@ export function LifecycleSection() {
   const trackRef = useReveal();
 
   return (
-    <section id="lifecycle" className="pt-[40px] pb-[80px] md:pt-[50px] md:pb-[100px] overflow-hidden">
+    <section id="lifecycle" className="pt-[60px] pb-[80px] md:pt-[100px] md:pb-[100px] overflow-hidden">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
         <div ref={headRef} className="reveal" style={{ textAlign: 'center', marginBottom: '64px' }}>
           <span style={{ fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', textTransform: 'uppercase' as const, color: 'var(--gold)', marginBottom: '16px', display: 'block' }}>The Architecture</span>
@@ -485,10 +485,10 @@ export function MockMingleSection() {
 
 // ─── Solutions ───────────────────────────────────────────────────
 const SOLUTIONS = [
-  { 
-    icon: '/icons/schools.png', 
-    title: 'Schools', 
-    desc: 'Career awareness and early diagnostics for students', 
+  {
+    icon: '/icons/schools.png',
+    title: 'Schools',
+    desc: 'Career awareness and early diagnostics for students',
     backText: 'At the school level, we map cognitive intelligence, memory retention along with aptitude and temperament early, so learning could be easier personally and career guidance begins with self-awareness, not guesswork.',
     fullDetails: [
       "8-Factor Cognitive Intelligence Mapping",
@@ -497,10 +497,10 @@ const SOLUTIONS = [
       "Parental Guidance Intelligence"
     ]
   },
-  { 
-    icon: '/icons/colleges.png', 
-    title: 'Colleges', 
-    desc: 'Placement intelligence and skill gap insights', 
+  {
+    icon: '/icons/colleges.png',
+    title: 'Colleges',
+    desc: 'Placement intelligence and skill gap insights',
     backText: 'At the college level, MockMingle delivers AI-powered simulations like mock interviews, situational tests, psychometric diagnostics, and real-time skill gap analysis that turn placement cells into launchpads.',
     fullDetails: [
       "MockMingle AI Interview Simulations",
@@ -509,10 +509,10 @@ const SOLUTIONS = [
       "Automated Placement Cell Dashboard"
     ]
   },
-  { 
-    icon: '/icons/professionals.png', 
-    title: 'Professionals', 
-    desc: 'Career guidance and readiness scoring', 
+  {
+    icon: '/icons/professionals.png',
+    title: 'Professionals',
+    desc: 'Career guidance and readiness scoring',
     backText: 'Continuous benchmarking and diagnostic intelligence for those looking to pivot, grow, or measure their readiness for the top 1% of roles.',
     fullDetails: [
       "Peer-to-Peer Industry Benchmarking",
@@ -521,10 +521,10 @@ const SOLUTIONS = [
       "High-Fidelity Behavioral Profiling"
     ]
   },
-  { 
-    icon: '/icons/companies.png', 
-    title: 'Companies', 
-    desc: 'Hiring intelligence and talent mapping', 
+  {
+    icon: '/icons/companies.png',
+    title: 'Enterprises',
+    desc: 'Hiring intelligence and talent mapping',
     backText: 'For enterprises, we assess workforce readiness, deploy precision upskilling, and match talent to roles with AI-driven hiring intelligence.',
     fullDetails: [
       "Workforce Readiness Assessment",
@@ -533,10 +533,10 @@ const SOLUTIONS = [
       "Talent Matching Excellence"
     ]
   },
-  { 
-    icon: '/icons/workforce.png', 
-    title: 'Workforce', 
-    desc: 'Behavioural diagnostics at scale', 
+  {
+    icon: '/icons/workforce.png',
+    title: 'Workforce',
+    desc: 'Behavioural diagnostics at scale',
     backText: 'For blue-collar workers, we bring vocational skill mapping, vernacular AI interfaces, and behavioural profiling to India\'s 300-million-strong workforce, because cognitive potential doesn\'t require a degree.',
     fullDetails: [
       "Vernacular AI Skill Diagnostics",
@@ -647,7 +647,7 @@ function SolutionCard({ s, onReadMore }: { s: typeof SOLUTIONS[0], onReadMore: (
             {displayText}
           </p>
           {isLongText && (
-            <button 
+            <button
               onClick={(e) => {
                 e.stopPropagation();
                 onReadMore();
@@ -700,7 +700,7 @@ function SolutionModal({ s, onClose }: { s: typeof SOLUTIONS[0], onClose: () => 
         animation: 'fadeIn 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
         overflow: 'hidden'
       }} onClick={e => e.stopPropagation()}>
-        
+
         {/* Header with Background Pattern */}
         <div style={{
           padding: '40px 40px 32px',
@@ -708,7 +708,7 @@ function SolutionModal({ s, onClose }: { s: typeof SOLUTIONS[0], onClose: () => 
           borderBottom: '1px solid var(--border)',
           position: 'relative'
         }}>
-          <button 
+          <button
             onClick={onClose}
             style={{
               position: 'absolute', top: '24px', right: '24px',
@@ -754,7 +754,7 @@ function SolutionModal({ s, onClose }: { s: typeof SOLUTIONS[0], onClose: () => 
 
         {/* Footer */}
         <div style={{ padding: '24px 40px', borderTop: '1px solid var(--border)', display: 'flex', justifyContent: 'flex-end', background: 'rgba(240,244,248,0.2)' }}>
-          <button 
+          <button
             onClick={onClose}
             style={{
               background: 'var(--blue-deep)', color: 'white',
@@ -1055,13 +1055,13 @@ export function ContactSection() {
                     aria-label="Interested in"
                   >
                     <option value="">Select an option</option>
-                    <option value="school">Solution for Schools</option>
-                    <option value="college">Solution for Colleges</option>
-                    <option value="professional">Solution for Professionals</option>
-                    <option value="company">Solution for Companies</option>
-                    <option value="other">Others</option>
+                    <option value="School">Solution for Schools</option>
+                    <option value="College">Solution for Colleges</option>
+                    <option value="Professional">Solution for Professionals</option>
+                    <option value="Enterprises">Solution for Enterprises</option>
+                    <option value="Other">Others</option>
                   </select>
-                  {interest === 'other' && (
+                  {interest === 'Other' && (
                     <input
                       required
                       name="other_detail"

@@ -23,21 +23,21 @@ function useReveal() {
 // --- Ecosystem Hero ---
 export function EcosystemHero() {
   return (
-    <section className="pt-[140px] pb-[80px] px-6 md:px-[60px] text-center relative overflow-hidden">
-      <div className="max-w-[1000px] mx-auto animate-fadeup">
+    <section className="pt-[110px] pb-[80px] px-6 md:px-[60px] text-center relative overflow-hidden">
+      <div className="max-w-[1200px] mx-auto animate-fadeup" style={{ textAlign: 'left' }}>
         {/* Back Button */}
-        <Link 
-          href="/" 
-          style={{ 
-            display: 'inline-flex', 
-            alignItems: 'center', 
-            gap: '8px', 
-            fontSize: '12px', 
-            fontWeight: 500, 
-            color: 'var(--blue-soft)', 
-            textDecoration: 'none', 
+        <Link
+          href="/"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '13px',
+            fontWeight: 500,
+            color: 'var(--blue-soft)',
+            textDecoration: 'none',
             marginBottom: '32px',
-            padding: '8px 16px',
+            padding: '10px 20px',
             borderRadius: '100px',
             background: 'rgba(255,255,255,0.4)',
             border: '1px solid var(--border)',
@@ -47,32 +47,35 @@ export function EcosystemHero() {
         >
           <span style={{ fontSize: '16px' }}>←</span> Back to Main Site
         </Link>
+      </div>
 
-        <span style={{ 
-          fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em', 
-          textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '24px', display: 'block' 
+      <div className="max-w-[1000px] mx-auto animate-fadeup text-center">
+
+        <span style={{
+          fontSize: '11px', fontWeight: 600, letterSpacing: '0.14em',
+          textTransform: 'uppercase', color: 'var(--gold)', marginBottom: '24px', display: 'block'
         }}>The Complete Stack</span>
-        <h1 className="font-display" style={{ 
-          fontSize: 'clamp(40px, 7vw, 90px)', fontWeight: 500, 
-          color: 'var(--blue-deep)', lineHeight: 1, marginBottom: '32px', letterSpacing: '-0.02em' 
+        <h1 className="font-display" style={{
+          fontSize: 'clamp(40px, 7vw, 90px)', fontWeight: 500,
+          color: 'var(--blue-deep)', lineHeight: 1, marginBottom: '32px', letterSpacing: '-0.02em'
         }}>
           One Platform.<br />Infinite Potential.
         </h1>
-        <p style={{ 
-          fontSize: '18px', color: 'var(--text-secondary)', fontWeight: 300, 
-          lineHeight: 1.7, maxWidth: '650px', margin: '0 auto 48px' 
+        <p style={{
+          fontSize: '18px', color: 'var(--text-secondary)', fontWeight: 300,
+          lineHeight: 1.7, maxWidth: '650px', margin: '0 auto 48px'
         }}>
           Shakktii AI provides the intelligence infrastructure to map, develop, and deploy human potential across every stage of the lifecycle—from classroom to boardroom.
         </p>
-        
+
         {/* Quick Jump (Floating Sub-Nav) */}
-        <div style={{ 
-          display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap', 
-          background: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(10px)', 
+        <div style={{
+          display: 'flex', justifyContent: 'center', gap: '12px', flexWrap: 'wrap',
+          background: 'rgba(255,255,255,0.4)', backdropFilter: 'blur(10px)',
           padding: '12px', borderRadius: '100px', border: '1px solid var(--border)',
           width: 'fit-content', margin: '0 auto'
         }}>
-          {['Schools', 'Colleges', 'Professionals', 'Workforce'].map(s => (
+          {['Schools', 'Colleges', 'Professionals', 'Enterprises', 'Workforce'].map(s => (
             <a key={s} href={`#${s.toLowerCase()}`} style={{
               fontSize: '13px', fontWeight: 500, color: 'var(--blue-deep)',
               textDecoration: 'none', padding: '8px 20px', borderRadius: '100px',
@@ -88,10 +91,10 @@ export function EcosystemHero() {
 }
 
 // --- Stakeholder Section Component ---
-function StakeholderSection({ 
-  id, title, subtitle, desc, icon, points, reverse = false, stats 
-}: { 
-  id: string, title: string, subtitle: string, desc: string, icon: string, points: string[], reverse?: boolean, stats?: { val: string, label: string } 
+function StakeholderSection({
+  id, title, subtitle, desc, icon, points, reverse = false, stats
+}: {
+  id: string, title: string, subtitle: string, desc: string, icon: string, points: string[], reverse?: boolean, stats?: { val: string, label: string }
 }) {
   const ref = useReveal();
   return (
@@ -101,7 +104,7 @@ function StakeholderSection({
           <span style={{ fontSize: '11px', fontWeight: 600, color: 'var(--blue-soft)', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '16px', display: 'block' }}>{subtitle}</span>
           <h2 className="font-display" style={{ fontSize: 'clamp(32px, 4vw, 56px)', color: 'var(--blue-deep)', fontWeight: 500, marginBottom: '24px', lineHeight: 1.1 }}>{title}</h2>
           <p style={{ fontSize: '17px', color: 'var(--text-secondary)', lineHeight: 1.7, fontWeight: 300, marginBottom: '32px' }}>{desc}</p>
-          
+
           <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 40px 0', display: 'flex', flexDirection: 'column', gap: '16px' }}>
             {points.map((p, i) => (
               <li key={i} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '15px', color: 'var(--blue-deep)', fontWeight: 400 }}>
@@ -110,33 +113,36 @@ function StakeholderSection({
               </li>
             ))}
           </ul>
-          
-          <button style={{
-            background: 'var(--blue-deep)',
-            color: 'white',
-            padding: '16px 32px',
-            borderRadius: '12px',
-            fontSize: '14px',
-            fontWeight: 600,
-            border: 'none',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '12px',
-            cursor: 'pointer',
-            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-            boxShadow: '0 4px 20px rgba(15,42,68,0.1)',
-            letterSpacing: '0.02em',
-          }} className="hover:scale-[1.03] hover:shadow-lg active:scale-[0.98]">
+
+          <Link 
+            href={`/onboarding?type=${title.toLowerCase() === 'companies' ? 'enterprises' : title.toLowerCase()}`}
+            style={{
+              background: 'var(--blue-deep)',
+              color: 'white',
+              padding: '16px 32px',
+              borderRadius: '12px',
+              fontSize: '14px',
+              fontWeight: 600,
+              textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '12px',
+              cursor: 'pointer',
+              transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+              boxShadow: '0 4px 20px rgba(15,42,68,0.1)',
+              letterSpacing: '0.02em',
+              width: 'fit-content'
+            }} className="hover:scale-[1.03] hover:shadow-lg active:scale-[0.98] group">
             Get Started for {title}
             <span style={{ fontSize: '18px', transition: 'transform 0.3s ease' }} className="group-hover:translate-x-1">→</span>
-          </button>
+          </Link>
         </div>
 
         <div style={{ direction: 'ltr' }}>
           <div style={{ position: 'relative' }}>
-            <div 
-              style={{ 
-                background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(30px)', 
+            <div
+              style={{
+                background: 'rgba(255,255,255,0.6)', backdropFilter: 'blur(30px)',
                 border: '1px solid var(--border)', borderRadius: '32px', padding: '40px',
               }}
               className="animate-float"
@@ -167,7 +173,7 @@ function StakeholderSection({
 // --- Specific Stakeholder Sections ---
 export function SchoolsSection() {
   return (
-    <StakeholderSection 
+    <StakeholderSection
       id="schools"
       subtitle="The Foundation"
       title="Schools"
@@ -186,7 +192,7 @@ export function SchoolsSection() {
 
 export function CollegesSection() {
   return (
-    <StakeholderSection 
+    <StakeholderSection
       id="colleges"
       subtitle="The Launchpad"
       title="Colleges"
@@ -206,7 +212,7 @@ export function CollegesSection() {
 
 export function ProfessionalsSection() {
   return (
-    <StakeholderSection 
+    <StakeholderSection
       id="professionals"
       subtitle="The Edge"
       title="Professionals"
@@ -223,15 +229,34 @@ export function ProfessionalsSection() {
   );
 }
 
+export function EnterprisesSection() {
+  return (
+    <StakeholderSection
+      id="enterprises"
+      subtitle="The Performance"
+      title="Enterprises"
+      desc="Precision hiring and internal mobility powered by diagnostic intelligence, reducing time-to-hire and increasing cultural alignment."
+      icon="/icons/companies.png"
+      reverse={true}
+      points={[
+        "Workforce Readiness Assessment",
+        "Precision Upskilling Deployment",
+        "AI-Driven Hiring Intelligence",
+        "Talent Matching Excellence"
+      ]}
+      stats={{ val: "65%", label: "Reduction in Time-to-Hire" }}
+    />
+  );
+}
+
 export function WorkforceSection() {
   return (
-    <StakeholderSection 
+    <StakeholderSection
       id="workforce"
       subtitle="The Scale"
       title="Workforce"
       desc="Bringing the power of AI to the blue-collar workforce through vernacular interfaces and precision skill mapping."
       icon="/icons/workforce.png"
-      reverse={true}
       points={[
         "Vernacular AI Skill Diagnostics",
         "Behavioral Readiness Mapping",
@@ -250,51 +275,115 @@ export function AnalyticsSection() {
     <section className="py-[100px] md:py-[150px] bg-[rgba(15,42,68,0.02)]">
       <div ref={ref} className="reveal max-w-[1200px] mx-auto px-6 md:px-[60px] text-center">
         <h2 className="font-display" style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', color: 'var(--blue-deep)', fontWeight: 500, marginBottom: '60px' }}>Unified Talent Intelligence</h2>
-        
-        <div style={{ position: 'relative', height: '400px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+
+        {/* Square Visualization Container for Perfect Symmetry */}
+        <div style={{
+          position: 'relative',
+          width: 'min(440px, 90vw)',
+          height: 'min(440px, 90vw)',
+          margin: '0 auto',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}>
           {/* Central Logo */}
-          <div style={{ 
-            width: '120px', height: '120px', background: 'white', borderRadius: '50%', 
-            zIndex: 10, boxShadow: '0 20px 60px rgba(15,42,68,0.1)',
+          <div style={{
+            width: '110px', height: '110px', background: 'white', borderRadius: '50%',
+            zIndex: 10, boxShadow: '0 15px 50px rgba(15,42,68,0.12)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '8px solid rgba(255,255,255,0.8)'
+            border: '8px solid white',
+            position: 'absolute',
+            top: '50%', left: '50%', transform: 'translate(-50%, -50%)'
           }}>
             <img src="/shakktii-logo.png" alt="Shakktii AI" style={{ width: '70%', height: '70%', objectFit: 'contain' }} />
+            {/* Animated Ring */}
+            <div style={{
+              position: 'absolute', top: '-10px', left: '-10px', right: '-10px', bottom: '-10px',
+              border: '1px solid var(--gold)', borderRadius: '50%', opacity: 0.3,
+              animation: 'pulse 3s infinite'
+            }} />
           </div>
-          
-          {/* Animated Connection Lines (SVG) */}
-          <svg style={{ position: 'absolute', width: '100%', height: '100%', pointerEvents: 'none' }}>
-            <line x1="50%" y1="50%" x2="25%" y2="15%" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.6" />
-            <line x1="50%" y1="50%" x2="75%" y2="15%" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.6" />
-            <line x1="50%" y1="50%" x2="25%" y2="78%" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.6" />
-            <line x1="50%" y1="50%" x2="75%" y2="78%" stroke="var(--gold)" strokeWidth="1.5" strokeDasharray="5,5" opacity="0.6" />
+
+          {/* Animated Connection Lines (SVG) - Precise points in 440px grid */}
+          <svg
+            viewBox="0 0 440 440"
+            style={{ position: 'absolute', width: '100%', height: '100%', pointerEvents: 'none', top: 0, left: 0 }}
+          >
+            {[ -90, -18, 54, 126, 198 ].map((angle, i) => {
+              const rad = (angle * Math.PI) / 180;
+              const rStart = 62; // Center of logo radius (55px) + small gap
+              const rEnd = 145;  // Inner edge of icon (175px radius - 30px half-width)
+              
+              const x1 = 220 + Math.cos(rad) * rStart;
+              const y1 = 220 + Math.sin(rad) * rStart;
+              const x2 = 220 + Math.cos(rad) * rEnd;
+              const y2 = 220 + Math.sin(rad) * rEnd;
+
+              return (
+                <line
+                  key={i}
+                  x1={x1}
+                  y1={y1}
+                  x2={x2}
+                  y2={y2}
+                  stroke="var(--gold)"
+                  strokeWidth="1.5"
+                  strokeDasharray="5,5"
+                  opacity="0.4"
+                />
+              );
+            })}
           </svg>
 
-          {/* Satellites */}
+          {/* Satellites in perfect pentagon using rotate/translate transform */}
           {[
-            { label: 'Schools', icon: '/icons/schools.png', pos: { top: '0%', left: '20%' } },
-            { label: 'Colleges', icon: '/icons/colleges.png', pos: { top: '0%', right: '20%' } },
-            { label: 'Professionals', icon: '/icons/professionals.png', pos: { bottom: '0%', left: '20%' } },
-            { label: 'Workforce', icon: '/icons/workforce.png', pos: { bottom: '0%', right: '20%' } },
-          ].map((s, i) => (
-            <div key={i} style={{ 
-              position: 'absolute', ...s.pos, 
-              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '10px',
-              zIndex: 11 /* Ensure icons are above lines */
-            }}>
-              <div style={{ 
-                width: '60px', height: '60px', background: 'white', borderRadius: '15px', 
-                boxShadow: '0 10px 30px rgba(15,42,68,0.05)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center'
-              }}>
-                <img src={s.icon} alt={s.label} style={{ width: '50%', height: '50%', objectFit: 'contain' }} />
+            { label: 'Schools', icon: '/icons/schools.png', angle: -90 },
+            { label: 'Colleges', icon: '/icons/colleges.png', angle: -18 },
+            { label: 'Professionals', icon: '/icons/professionals.png', angle: 54 },
+            { label: 'Enterprises', icon: '/icons/companies.png', angle: 126 },
+            { label: 'Workforce', icon: '/icons/workforce.png', angle: 198 },
+          ].map((s, i) => {
+            const rad = (s.angle * Math.PI) / 180;
+            return (
+              <div
+                key={i}
+                style={{
+                  position: 'absolute',
+                  top: '50%',
+                  left: '50%',
+                  transform: `rotate(${s.angle}deg) translate(175px) rotate(${-s.angle}deg) translate(-50%, -50%)`,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: '8px',
+                  zIndex: 11
+                }}
+              >
+                <div style={{
+                  width: '60px', height: '60px', background: 'white', borderRadius: '15px',
+                  boxShadow: '0 8px 25px rgba(15,42,68,0.06)', border: '1px solid rgba(15,42,68,0.03)',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  transition: 'transform 0.3s ease'
+                }} className="hover:scale-110">
+                  <img src={s.icon} alt={s.label} style={{ width: '50%', height: '50%', objectFit: 'contain' }} />
+                </div>
+                <span style={{
+                  fontSize: '10px', fontWeight: 600, color: 'var(--blue-deep)',
+                  letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center'
+                }}>{s.label}</span>
               </div>
-              <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--blue-deep)', letterSpacing: '0.05em', textTransform: 'uppercase' }}>{s.label}</span>
-            </div>
-          ))}
+            );
+          })}
         </div>
-        
-        <p style={{ marginTop: '40px', fontSize: '15px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '60px auto 0', fontWeight: 300 }}>
+        <style jsx>{`
+          @keyframes pulse {
+            0% { transform: scale(1); opacity: 0.3; }
+            50% { transform: scale(1.1); opacity: 0.1; }
+            100% { transform: scale(1); opacity: 0.3; }
+          }
+        `}</style>
+
+        <p style={{ marginTop: '60px', fontSize: '15px', color: 'var(--text-secondary)', maxWidth: '600px', margin: '60px auto 0', fontWeight: 300 }}>
           Our intelligence layer creates a longitudinal profile that grows with the individual, ensuring their potential is never lost to the gaps in the traditional ecosystem.
         </p>
       </div>
