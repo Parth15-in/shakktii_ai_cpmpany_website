@@ -276,22 +276,25 @@ export function AnalyticsSection() {
       <div ref={ref} className="reveal max-w-[1200px] mx-auto px-6 md:px-[60px] text-center">
         <h2 className="font-display" style={{ fontSize: 'clamp(28px, 3.5vw, 48px)', color: 'var(--blue-deep)', fontWeight: 500, marginBottom: '60px' }}>Unified Talent Intelligence</h2>
 
-        {/* Square Visualization Container for Perfect Symmetry */}
-        <div style={{
-          position: 'relative',
-          width: 'min(440px, 90vw)',
-          height: 'min(440px, 90vw)',
-          margin: '0 auto',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}>
+        {/* Square Visualization Container with Responsive Variables */}
+        <div 
+          className="analytics-container"
+          style={{
+            position: 'relative',
+            width: 'var(--container-size)',
+            height: 'var(--container-size)',
+            margin: '0 auto',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+          
           {/* Central Logo */}
           <div style={{
-            width: '110px', height: '110px', background: 'white', borderRadius: '50%',
+            width: 'var(--center-size)', height: 'var(--center-size)', background: 'white', borderRadius: '50%',
             zIndex: 10, boxShadow: '0 15px 50px rgba(15,42,68,0.12)',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
-            border: '8px solid white',
+            border: 'calc(var(--center-size) * 0.07) solid white',
             position: 'absolute',
             top: '50%', left: '50%', transform: 'translate(-50%, -50%)'
           }}>
@@ -304,15 +307,16 @@ export function AnalyticsSection() {
             }} />
           </div>
 
-          {/* Animated Connection Lines (SVG) - Precise points in 440px grid */}
+          {/* Animated Connection Lines (SVG) - Precise points in coordinate system */}
           <svg
             viewBox="0 0 440 440"
             style={{ position: 'absolute', width: '100%', height: '100%', pointerEvents: 'none', top: 0, left: 0 }}
           >
             {[ -90, -18, 54, 126, 198 ].map((angle, i) => {
               const rad = (angle * Math.PI) / 180;
-              const rStart = 62; // Center of logo radius (55px) + small gap
-              const rEnd = 145;  // Inner edge of icon (175px radius - 30px half-width)
+              // These values stay in the 440px coordinate space, SVG scales it down via CSS width/height
+              const rStart = 62; 
+              const rEnd = 138;  // Slightly shorter to avoid touching icon border
               
               const x1 = 220 + Math.cos(rad) * rStart;
               const y1 = 220 + Math.sin(rad) * rStart;
@@ -335,7 +339,7 @@ export function AnalyticsSection() {
             })}
           </svg>
 
-          {/* Satellites in perfect pentagon using rotate/translate transform */}
+          {/* Satellites using responsive radius */}
           {[
             { label: 'Schools', icon: '/icons/schools.png', angle: -90 },
             { label: 'Colleges', icon: '/icons/colleges.png', angle: -18 },
@@ -343,7 +347,6 @@ export function AnalyticsSection() {
             { label: 'Enterprises', icon: '/icons/companies.png', angle: 126 },
             { label: 'Workforce', icon: '/icons/workforce.png', angle: 198 },
           ].map((s, i) => {
-            const rad = (s.angle * Math.PI) / 180;
             return (
               <div
                 key={i}
@@ -351,7 +354,7 @@ export function AnalyticsSection() {
                   position: 'absolute',
                   top: '50%',
                   left: '50%',
-                  transform: `rotate(${s.angle}deg) translate(175px) rotate(${-s.angle}deg) translate(-50%, -50%)`,
+                  transform: `rotate(${s.angle}deg) translate(var(--radius)) rotate(${-s.angle}deg) translate(-50%, -50%)`,
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -360,7 +363,7 @@ export function AnalyticsSection() {
                 }}
               >
                 <div style={{
-                  width: '60px', height: '60px', background: 'white', borderRadius: '15px',
+                  width: 'var(--icon-size)', height: 'var(--icon-size)', background: 'white', borderRadius: 'var(--icon-radius)',
                   boxShadow: '0 8px 25px rgba(15,42,68,0.06)', border: '1px solid rgba(15,42,68,0.03)',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   transition: 'transform 0.3s ease'
@@ -368,7 +371,7 @@ export function AnalyticsSection() {
                   <img src={s.icon} alt={s.label} style={{ width: '50%', height: '50%', objectFit: 'contain' }} />
                 </div>
                 <span style={{
-                  fontSize: '10px', fontWeight: 600, color: 'var(--blue-deep)',
+                  fontSize: 'var(--label-size)', fontWeight: 600, color: 'var(--blue-deep)',
                   letterSpacing: '0.1em', textTransform: 'uppercase', textAlign: 'center'
                 }}>{s.label}</span>
               </div>
@@ -376,9 +379,27 @@ export function AnalyticsSection() {
           })}
         </div>
         <style jsx>{`
+          .analytics-container {
+            --container-size: 440px;
+            --radius: 175px;
+            --icon-size: 60px;
+            --icon-radius: 15px;
+            --center-size: 110px;
+            --label-size: 10px;
+          }
+          @media (max-width: 768px) {
+            .analytics-container {
+              --container-size: min(320px, 85vw);
+              --radius: 125px;
+              --icon-size: 48px;
+              --icon-radius: 12px;
+              --center-size: 85px;
+              --label-size: 9px;
+            }
+          }
           @keyframes pulse {
             0% { transform: scale(1); opacity: 0.3; }
-            50% { transform: scale(1.1); opacity: 0.1; }
+            50% { transform: scale(1.05); opacity: 0.1; }
             100% { transform: scale(1); opacity: 0.3; }
           }
         `}</style>
