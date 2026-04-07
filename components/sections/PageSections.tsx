@@ -332,6 +332,15 @@ const SCORES = [
 
 export function MockMingleSection() {
   const ref = useReveal();
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide(prev => (prev + 1) % 7);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
   return (
     <section id="mockmingle" className="py-[80px] md:py-[100px]">
       <div className="max-w-[1200px] mx-auto px-6 md:px-[60px]">
@@ -420,29 +429,204 @@ export function MockMingleSection() {
 
                 {/* Browser content */}
                 <div className="grid grid-cols-1 sm:grid-cols-2" style={{ minHeight: '260px' }}>
-                  {/* Video side */}
-                  <div style={{
-                    background: 'linear-gradient(135deg,#1a3a5c 0%,#0d2035 100%)',
-                    display: 'flex', flexDirection: 'column' as const,
-                    alignItems: 'center', justifyContent: 'center',
-                    padding: '24px', position: 'relative', overflow: 'hidden',
-                    minHeight: '180px',
-                  }}>
-                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at 40% 30%,rgba(50,92,145,0.3) 0%,transparent 70%)', pointerEvents: 'none' }} />
-                    <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg,#3a6491,#2a4e73)', border: '2px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
-                      <svg width="30" height="30" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
-                        <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
-                      </svg>
+                  {/* Sliding Container */}
+                  <div style={{ position: 'relative', overflow: 'hidden', minHeight: '260px' }}>
+                    {/* Slide 1: AI Interview */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: 'linear-gradient(135deg,#1a3a5c 0%,#0d2035 100%)',
+                      display: 'flex', flexDirection: 'column' as const,
+                      alignItems: 'center', justifyContent: 'center',
+                      padding: '24px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 0 ? 1 : 0,
+                      transform: `translateX(${(0 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 0 ? 2 : 1,
+                    }}>
+                      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, background: 'radial-gradient(ellipse at 40% 30%,rgba(50,92,145,0.3) 0%,transparent 70%)', pointerEvents: 'none' }} />
+                      <div style={{ width: '60px', height: '60px', borderRadius: '50%', background: 'linear-gradient(135deg,#3a6491,#2a4e73)', border: '2px solid rgba(255,255,255,0.15)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '12px' }}>
+                        <svg width="30" height="30" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)">
+                          <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z" />
+                        </svg>
+                      </div>
+                      <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}>AI Interview Session</div>
+                      <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                          <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>
+                        </div>
+                        <div style={{ flex: 1, height: '3px', background: 'rgba(255,255,255,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
+                          <div style={{ height: '100%', width: '45%', background: 'var(--gold)', borderRadius: '2px' }} />
+                        </div>
+                        <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.5)' }}>04:32</span>
+                      </div>
                     </div>
-                    <div style={{ fontSize: '11px', color: 'rgba(255,255,255,0.7)', fontWeight: 400 }}>AI Interview Session</div>
-                    <div style={{ position: 'absolute', bottom: '12px', left: 0, right: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '10px', padding: '0 16px' }}>
-                      <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                        <svg width="8" height="8" viewBox="0 0 24 24" fill="white"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" /></svg>
+
+                    {/* Slide 2: Psychometric Assessment */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: '#f8fafc',
+                      padding: '16px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 1 ? 1 : 0,
+                      transform: `translateX(${(1 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 1 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const, gap: '10px'
+                    }}>
+                      <div style={{ borderBottom: '1.5px solid #2d46b9', paddingBottom: '4px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                        <span style={{ fontSize: '8px', fontWeight: 700, color: '#2d46b9' }}>Psychometric Assessment</span>
+                        <span style={{ fontSize: '8px', color: '#64748b' }}>Question 1 of 30</span>
                       </div>
-                      <div style={{ flex: 1, height: '3px', background: 'rgba(255,255,255,0.15)', borderRadius: '2px', overflow: 'hidden' }}>
-                        <div style={{ height: '100%', width: '45%', background: 'var(--gold)', borderRadius: '2px' }} />
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(10, 1fr)', gap: '2px' }}>
+                        {Array.from({ length: 30 }).map((_, i) => (
+                          <div key={i} style={{ width: '12px', height: '12px', borderRadius: '2px', background: i === 0 ? '#2d46b9' : '#e2e8f0', fontSize: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center', color: i === 0 ? 'white' : '#64748b' }}>{i + 1}</div>
+                        ))}
                       </div>
-                      <span style={{ fontSize: '8px', color: 'rgba(255,255,255,0.5)' }}>04:32</span>
+                      <div style={{ border: '1px solid #e2e8f0', padding: '8px', borderRadius: '4px', background: 'white' }}>
+                        <p style={{ fontSize: '8px', color: '#1e293b', fontWeight: 600, marginBottom: '6px' }}>Group project conflict resolution?</p>
+                        {[
+                          'Discuss openly with group',
+                          'Ignore and carry on',
+                          'Complain to lecturer'
+                        ].map((opt, i) => (
+                          <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '4px', marginBottom: '3px' }}>
+                            <div style={{ width: '6px', height: '6px', borderRadius: '50%', border: '1px solid #cbd5e1' }} />
+                            <span style={{ fontSize: '7px', color: '#64748b' }}>{opt}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 3: Skill Test (Excel) */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: 'white',
+                      padding: '20px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 2 ? 1 : 0,
+                      transform: `translateX(${(2 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 2 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const, justifyContent: 'center'
+                    }}>
+                      <div style={{ marginBottom: '12px' }}>
+                        <div style={{ fontSize: '9px', fontWeight: 600, color: '#1e293b', marginBottom: '4px' }}>Question 3 of 15</div>
+                        <p style={{ fontSize: '10px', color: '#334155', lineHeight: 1.4 }}>Which Excel function counts the number of cells in a range that are not empty?</p>
+                      </div>
+                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '6px' }}>
+                        {['SUM', 'AVERAGE', 'COUNT', 'MAX'].map(label => (
+                          <div key={label} style={{ padding: '8px', border: '1px solid #e2e8f0', borderRadius: '4px', textAlign: 'center' as const, fontSize: '8px', fontWeight: 600, color: '#475569' }}>
+                            {label}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 4: Aptitude (General) */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: '#fcfcfc',
+                      padding: '20px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 3 ? 1 : 0,
+                      transform: `translateX(${(3 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 3 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const
+                    }}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+                        <div style={{ width: '24px', height: '24px', borderRadius: '50%', border: '2px solid #3b82f6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '8px', color: '#3b82f6', fontWeight: 700 }}>1/10</div>
+                        <span style={{ fontSize: '9px', color: '#64748b' }}>Choosing a Gym</span>
+                      </div>
+                      <p style={{ fontSize: '8px', color: '#475569', lineHeight: 1.5, marginBottom: '10px' }}>You have decided to start a fitness routine and are looking to join a gym. Several options are available...</p>
+                      <div style={{ display: 'flex', flexDirection: 'column' as const, gap: '4px' }}>
+                        {['Option A', 'Option B', 'Option C'].map(opt => (
+                          <div key={opt} style={{ padding: '6px 10px', background: 'white', border: '1px solid #e2e8f0', borderRadius: '6px', fontSize: '7px', color: '#1e293b', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                            <span style={{ fontWeight: 700, color: '#94a3b8' }}>{opt.split(' ')[1]}</span> {opt} selected...
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 5: Behavioral (Likert Scale) */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: 'black',
+                      padding: '20px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 4 ? 1 : 0,
+                      transform: `translateX(${(4 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 4 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const, gap: '12px'
+                    }}>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '4px' }}>
+                        <span style={{ fontSize: '8px', color: 'white' }}>Question 1 of 10</span>
+                        <span style={{ fontSize: '8px', color: '#a855f7' }}>10% Complete</span>
+                      </div>
+                      <div style={{ height: '3px', width: '100%', background: 'rgba(255,255,255,0.1)', borderRadius: '2px', overflow: 'hidden' }}>
+                        <div style={{ height: '100%', width: '10%', background: '#a855f7' }} />
+                      </div>
+                      <div style={{ background: 'white', borderRadius: '8px', padding: '12px' }}>
+                        <p style={{ fontSize: '9px', fontWeight: 600, color: '#1e293b', marginBottom: '8px' }}>I enjoy meeting new people and socializing in large groups.</p>
+                        {['Strongly Disagree', 'Disagree', 'Neutral', 'Agree', 'Strongly Agree'].map((opt, i) => (
+                          <div key={opt} style={{ padding: '6px', border: '1px solid #e2e8f0', borderRadius: '4px', fontSize: '7px', marginBottom: '3px', color: '#64748b' }}>{opt}</div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Slide 6: Vernacular Technical (Marathi/Hindi) */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: '#0d1117',
+                      padding: '20px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 5 ? 1 : 0,
+                      transform: `translateX(${(5 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 5 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const
+                    }}>
+                      <div style={{ fontSize: '10px', fontWeight: 600, color: '#6366f1', marginBottom: '4px' }}>टेक्निकल असेसमेंट</div>
+                      <div style={{ fontSize: '8px', color: '#94a3b8', marginBottom: '12px' }}>प्रश्न 1 / 20</div>
+                      <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '14px' }}>
+                        <p style={{ fontSize: '10px', color: 'white', fontWeight: 600, marginBottom: '12px' }}>PCB तयार करण्याच्या प्रक्रियेत पहिला टप्पा कोणता आहे?</p>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                          {['डिझाइन', 'एटिंग', 'सोल्डरिंग', 'टेस्टिंग'].map((l, i) => (
+                            <div key={l} style={{ padding: '8px', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '6px', fontSize: '8px', color: '#94a3b8', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                              <div style={{ width: '10px', height: '10px', borderRadius: '50%', border: '1px solid rgba(255,255,255,0.2)', fontSize: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{String.fromCharCode(65 + i)}</div>
+                              {l}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Slide 7: Vernacular Situational Aptitude */}
+                    <div style={{
+                      position: 'absolute', top: 0, left: 0, width: '100%', height: '100%',
+                      background: '#0a1018',
+                      padding: '20px',
+                      transition: 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)',
+                      opacity: activeSlide === 6 ? 1 : 0,
+                      transform: `translateX(${(6 - activeSlide) * 100}%)`,
+                      zIndex: activeSlide === 6 ? 2 : 1,
+                      display: 'flex', flexDirection: 'column' as const
+                    }}>
+                      <div style={{ fontSize: '10px', fontWeight: 600, color: '#10b981', marginBottom: '4px' }}>सिच्युएशन अ‍ॅप्टिट्यूड</div>
+                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '10px' }}>
+                        <span style={{ fontSize: '8px', color: '#94a3b8' }}>प्रश्न 1 / 10</span>
+                        <div style={{ flex: 1, height: '3px', background: 'rgba(255,255,255,0.1)', margin: '0 8px', borderRadius: '2px' }}>
+                          <div style={{ width: '10%', height: '100%', background: '#10b981' }} />
+                        </div>
+                        <span style={{ fontSize: '8px', color: '#94a3b8' }}>10% पूर्ण</span>
+                      </div>
+                      <div style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', padding: '14px' }}>
+                        <p style={{ fontSize: '9px', color: 'white', fontWeight: 600, marginBottom: '12px', lineHeight: 1.5 }}>तुम्ही PCB असेंबली लाईनवर काम करत असताना अचानक मशीनमध्ये बिघाड झाला. तुम्ही काय कराल?</p>
+                        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+                          {['सुपरवायझरला सांगा', 'वाट पहा', 'सहकाऱ्यांना सांगा', 'दुरुस्ती प्रयत्न करा'].map((l, i) => (
+                            <div key={l} style={{ padding: '6px', border: i === 2 ? '1.5px solid #10b981' : '1px solid rgba(255,255,255,0.1)', background: i === 2 ? 'rgba(16,185,129,0.1)' : 'transparent', borderRadius: '6px', fontSize: '7px', color: 'white', display: 'flex', alignItems: 'center', gap: '4px' }}>
+                              <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: i === 2 ? '#10b981' : 'rgba(255,255,255,0.1)', fontSize: '6px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>{String.fromCharCode(65 + i)}</div>
+                              {l}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
 
