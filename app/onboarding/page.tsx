@@ -25,6 +25,8 @@ const STAKEHOLDERS: Record<string, any> = {
       { role: 'UI/UX Designer', match: '89%', desc: 'High creativity and empathy for behavioral patterns.' }
     ],
     hindi: 'राहुल की प्रोफाइल समस्या-समाधान के प्रति झुकाव दिखाती है।',
+    step2: { t: 'Innate Potential Mapping', d: 'Our AI identifies cognitive baselines and behavioral traits to map a child\'s natural inclination.' },
+    step3: { t: 'Integrated Career Discovery', d: 'Bridge the gap between classroom learning and future-ready career paths through early exposure.' },
     step4: 'Automated Dashboards: Real-time progress tracking for teachers and administration.'
   },
   colleges: {
@@ -45,6 +47,8 @@ const STAKEHOLDERS: Record<string, any> = {
       { role: 'Risk Manager', match: '85%', desc: 'Strong understanding of market dynamics and logic.' }
     ],
     hindi: 'अंजलि की तैयारी कॉर्पोरेट जगत के लिए उत्कृष्ट है।',
+    step2: { t: 'Employability Gap Analysis', d: 'Deep-dive into technical and soft-skill gaps relative to current industry benchmarks.' },
+    step3: { t: 'Placement Excellence', d: 'Transform placement cells into high-performance career centers with industry-readiness scoring.' },
     step4: 'Industry Readiness: Verified credentials mapped to live job market requirements.'
   },
   professionals: {
@@ -65,6 +69,8 @@ const STAKEHOLDERS: Record<string, any> = {
       { role: 'Strategy Consultant', match: '88%', desc: 'High strategic thinking and peer benchmarking scores.' }
     ],
     hindi: 'विक्रम का अनुभव नेतृत्व और रणनीति में महत्वपूर्ण है।',
+    step2: { t: 'Industry Benchmarking', d: 'Compare your skill profile against top 1% performers in your specific industry and role.' },
+    step3: { t: 'Strategic Career Pivots', d: 'Receive diagnostic-backed roadmaps for vertical growth or successful career transitions.' },
     step4: 'Dynamic Roadmap: Personalized learning paths that adapt as you gain skills.'
   },
   enterprises: {
@@ -85,6 +91,8 @@ const STAKEHOLDERS: Record<string, any> = {
       { role: 'DevOps Specialist', match: '82%', desc: 'Good fit for systems thinking and scalability aptitude.' }
     ],
     hindi: 'टीम की प्रदर्शन क्षमता भविष्य के लक्ष्यों के अनुरूप है।',
+    step2: { t: 'Cultural & Skill Alignment', d: 'Match talent pools to your organization\'s unique requirements and cultural architecture.' },
+    step3: { t: 'Precision Talent Lifecycle', d: 'Optimize the entire lifecycle from predictive hiring to internal mobility and retention.' },
     step4: 'Retention Insights: Predictive analysis to stay ahead of internal mobility needs.'
   },
   workforce: {
@@ -105,6 +113,8 @@ const STAKEHOLDERS: Record<string, any> = {
       { role: 'Facility Manager', match: '86%', desc: 'Strong focus on compliance and safety standards.' }
     ],
     hindi: 'कैलाश का कौशल परिचालन उत्कृष्टता को दर्शाता है।',
+    step2: { t: 'Vernacular Skill Diagnostics', d: 'Accessible AI-powered assessments in local languages to map vocational capabilities.' },
+    step3: { t: 'Direct-to-Role Deployment', d: 'Connect verified skill profiles directly to high-demand roles in logistics and manufacturing.' },
     step4: 'Vernacular Support: 100% diagnostic capability in local languages.'
   },
 };
@@ -177,8 +187,8 @@ function OnboardingContent() {
           }}>
             {[
               { s: '01', t: 'Intelligent Assessment', d: data.assessment },
-              { s: '02', t: 'Precision Diagnosis', d: 'Our AI engine analyzes behavioral and cognitive data to build architectural talent maps.' },
-              { s: '03', t: 'Strategic Outcomes', d: 'Deliver results that bridge the gap between classroom and real-world outcomes.' },
+              { s: '02', t: data.step2.t, d: data.step2.d },
+              { s: '03', t: data.step3.t, d: data.step3.d },
               { s: '04', t: 'Full Transparency', d: data.step4 }
             ].map((item, idx) => (
               <div key={idx} style={{ 
