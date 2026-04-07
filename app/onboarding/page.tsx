@@ -163,8 +163,26 @@ function OnboardingContent() {
             </span>
           </div>
         </div>
-        <Link href="/ecosystem" style={{ color: 'var(--blue-soft)', fontSize: '15.5px', textDecoration: 'none', fontWeight: 500, display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <span>←</span> Back to Ecosystem
+        <Link
+          href="/ecosystem"
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            fontSize: '13px',
+            fontWeight: 500,
+            color: 'var(--blue-soft)',
+            textDecoration: 'none',
+            padding: '10px 20px',
+            borderRadius: '100px',
+            background: 'rgba(255,255,255,0.4)',
+            border: '1px solid var(--border)',
+            transition: 'all 0.2s',
+            width: 'fit-content'
+          }}
+          className="hover:bg-white hover:shadow-sm"
+        >
+          <span style={{ fontSize: '16px' }}>←</span> Back to Ecosystem
         </Link>
       </div>
 
