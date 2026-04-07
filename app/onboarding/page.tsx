@@ -4,6 +4,7 @@ import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import Image from 'next/image';
+import NeuralCanvas from '@/components/NeuralCanvas';
 
 const STAKEHOLDERS: Record<string, any> = {
   schools: {
@@ -300,19 +301,22 @@ function OnboardingContent() {
 
 export default function OnboardingPage() {
   return (
-    <main style={{ minHeight: '100vh', background: '#f8fafc', color: 'var(--blue-deep)', paddingBottom: '120px' }}>
-      <style jsx global>{`
-        @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(10px); }
-          to { opacity: 1; transform: translateY(0); }
-        }
-        .animate-fade-in {
-          animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-        }
-      `}</style>
-      <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
-        <OnboardingContent />
-      </Suspense>
-    </main>
+    <>
+      <NeuralCanvas />
+      <main style={{ minHeight: '100vh', background: 'transparent', color: 'var(--blue-deep)', paddingBottom: '120px', position: 'relative', zIndex: 1 }}>
+        <style jsx global>{`
+          @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+          }
+          .animate-fade-in {
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+          }
+        `}</style>
+        <Suspense fallback={<div className="h-screen flex items-center justify-center">Loading...</div>}>
+          <OnboardingContent />
+        </Suspense>
+      </main>
+    </>
   );
 }
